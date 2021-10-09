@@ -1,6 +1,7 @@
 [
 	{
 		"id": "xErEVD6D.AAAAQyW",
+		"marked": false,
 		"name": "Place",
 		"dataModel": "Physical",
 		"columns": [
@@ -52,7 +53,11 @@
 				"length": 10,
 				"primary": false,
 				"generated": "native",
-				"references": "ujEE7D6GAqAAFA12"
+				"references": {
+					"id": "ujEE7D6GAqAAFA12",
+					"tableName": "Type",
+					"columnName": "id"
+				}
 			},
 			{
 				"id": "5fgpgj6GAqAAFBMw",
@@ -67,6 +72,7 @@
 	},
 	{
 		"id": "v0jMVD6D.AAAAQ4a",
+		"marked": false,
 		"name": "User",
 		"dataModel": "Physical",
 		"columns": [
@@ -153,6 +159,7 @@
 	},
 	{
 		"id": "S40SVD6D.AAAAQ8A",
+		"marked": false,
 		"name": "Task",
 		"dataModel": "Physical",
 		"columns": [
@@ -215,12 +222,17 @@
 				"length": 10,
 				"primary": false,
 				"generated": "native",
-				"references": "FTHEVD6D.AAAAQyh"
+				"references": {
+					"id": "FTHEVD6D.AAAAQyh",
+					"tableName": "Place",
+					"columnName": "id"
+				}
 			}
 		]
 	},
 	{
 		"id": "0g.yVD6D.AAAAQ.v",
+		"marked": false,
 		"name": "User_Place",
 		"dataModel": "Logical",
 		"columns": [
@@ -232,7 +244,11 @@
 				"length": 10,
 				"primary": true,
 				"generated": "native",
-				"references": "7XTMVD6D.AAAAQ4o"
+				"references": {
+					"id": "7XTMVD6D.AAAAQ4o",
+					"tableName": "User",
+					"columnName": "id"
+				}
 			},
 			{
 				"id": "Bg.yVD6D.AAAAQ.3",
@@ -242,7 +258,11 @@
 				"length": 10,
 				"primary": true,
 				"generated": "native",
-				"references": "FTHEVD6D.AAAAQyh"
+				"references": {
+					"id": "FTHEVD6D.AAAAQyh",
+					"tableName": "Place",
+					"columnName": "id"
+				}
 			},
 			{
 				"id": "O0xyVD6D.AAAAQ_F",
@@ -288,6 +308,7 @@
 	},
 	{
 		"id": ".LCHVD6D.AAAARNT",
+		"marked": false,
 		"name": "User_Task",
 		"dataModel": "Logical",
 		"columns": [
@@ -299,7 +320,11 @@
 				"length": 10,
 				"primary": true,
 				"generated": "native",
-				"references": "7XTMVD6D.AAAAQ4o"
+				"references": {
+					"id": "7XTMVD6D.AAAAQ4o",
+					"tableName": "User",
+					"columnName": "id"
+				}
 			},
 			{
 				"id": "DLCHVD6D.AAAARNb",
@@ -309,7 +334,11 @@
 				"length": 10,
 				"primary": true,
 				"generated": "native",
-				"references": "zdKSVD6D.AAAAQ8Y"
+				"references": {
+					"id": "zdKSVD6D.AAAAQ8Y",
+					"tableName": "Task",
+					"columnName": "id"
+				}
 			},
 			{
 				"id": "yWN3VD6D.AAAARTj",
@@ -335,6 +364,7 @@
 	},
 	{
 		"id": ".qV47D6GAqAAFA0y",
+		"marked": false,
 		"name": "Type",
 		"dataModel": "Physical",
 		"columns": [
@@ -361,6 +391,7 @@
 	},
 	{
 		"id": "M5UB7D6GAqAAFBBv",
+		"marked": false,
 		"name": "Place_Place",
 		"dataModel": "Logical",
 		"columns": [
@@ -372,7 +403,11 @@
 				"length": 10,
 				"primary": true,
 				"generated": "native",
-				"references": "FTHEVD6D.AAAAQyh"
+				"references": {
+					"id": "FTHEVD6D.AAAAQyh",
+					"tableName": "Place",
+					"columnName": "id"
+				}
 			},
 			{
 				"id": "u5UB7D6GAqAAFBB3",
@@ -382,7 +417,11 @@
 				"length": 10,
 				"primary": true,
 				"generated": "native",
-				"references": "FTHEVD6D.AAAAQyh"
+				"references": {
+					"id": "FTHEVD6D.AAAAQyh",
+					"tableName": "Place",
+					"columnName": "id"
+				}
 			}
 		]
 	}
