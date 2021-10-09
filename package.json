@@ -1,0 +1,55 @@
+{
+	"name": "hapiffold",
+	"version": "1.0.0",
+	"description": "System Information Generator",
+	"main": "index.ts",
+	"directories": {
+		"lib": "lib"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"parse": "xml2js assets/.xml -ns -a -o assets/database.json"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/cartory/stackffold.git"
+	},
+	"keywords": [
+		"typescript",
+		"javascript",
+		"webpack",
+		"dotenv",
+		"sequelize",
+		"express"
+	],
+	"author": "cartory",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/cartory/stackffold/issues"
+	},
+	"homepage": "https://github.com/cartory/stackffold#readme",
+	"dependencies": {
+		"@types/cors": "^2.8.12",
+		"@types/dotenv": "^8.2.0",
+		"@types/express": "^4.17.13",
+		"@types/sequelize": "^4.28.10"
+	},
+	"devDependencies": {
+		"fast-xml-parser": "^3.20.3",
+		"nodemon": "^2.0.12"
+	},
+	"nodemonConfig": {
+		"delay": 1500,
+		"verbose": false,
+		"ignore": [
+			".git",
+			"dist",
+			"node_modules"
+		],
+		"watch": [
+			"lib",
+			".env",
+			"tsconfig.json"
+		]
+	}
+}
