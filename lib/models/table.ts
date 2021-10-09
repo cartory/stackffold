@@ -20,7 +20,14 @@ export interface Column {
 	primary?: boolean
 	nullable?: boolean
 
-	references?: string
+	references?: Reference
+}
+
+export interface Reference { 
+	id: string
+	tableName: string
+	columnName: string
+	relationship: string
 }
 
 export interface TableFactory {
