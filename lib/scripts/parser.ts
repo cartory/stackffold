@@ -20,6 +20,7 @@ const getDBTable = ({ Models }) => {
 let database: Table[] = getDBTable(vpp.Project).map(table => { 
 	return {
 		id: table.Id,
+		marked: false,
 		name: table.Name,
 		dataModel: table.DataModel,
 		columns: table.ModelChildren.DBColumn.map(column => { 
