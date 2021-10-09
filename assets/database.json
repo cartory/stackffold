@@ -1,251 +1,389 @@
-{
-    "Project": {
-        "ProjectInfo": {
-            "OrmInfo": "",
-            "LogicalView": "",
-            "ProjectOptions": {
-                "DiagramOptions": {
-                    "DefaultHtmlDocFont": ""
-                },
-                "GeneralOptions": "",
-                "InstantReverseOptions": "",
-                "ModelQualityOptions": "",
-                "ORMOptions": "",
-                "RequirementDiagramOptions": "",
-                "StateCodeEngineOptions": "",
-                "WarningOptions": "",
-                "PORepository": {
-                    "POUserIDFormats": {
-                        "POUserIDFormat": [
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
-                        ]
-                    }
-                }
-            }
-        },
-        "Models": {
-            "DataType": [
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-            ],
-            "ModelRelationshipContainer": {
-                "ModelChildren": {
-                    "ModelRelationshipContainer": {
-                        "ModelChildren": {
-                            "DBForeignKey": [
-                                {
-                                    "MasterView": {
-                                        "DBForeignKey": ""
-                                    }
-                                },
-                                {
-                                    "MasterView": {
-                                        "DBForeignKey": ""
-                                    }
-                                },
-                                {
-                                    "MasterView": {
-                                        "DBForeignKey": ""
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                }
-            },
-            "Model": {
-                "SubDiagrams": {
-                    "ERDiagram": ""
-                },
-                "ModelChildren": {
-                    "DBTable": [
-                        {
-                            "ModelChildren": {
-                                "DBColumn": [
-                                    "",
-                                    {
-                                        "ForeignKeyConstraints": {
-                                            "DBForeignKeyConstraint": ""
-                                        }
-                                    },
-                                    "",
-                                    "",
-                                    ""
-                                ]
-                            },
-                            "FromSimpleRelationships": {
-                                "DBForeignKey": ""
-                            },
-                            "ToSimpleRelationships": {
-                                "DBForeignKey": ""
-                            },
-                            "MasterView": {
-                                "DBTable": ""
-                            }
-                        },
-                        {
-                            "ModelChildren": {
-                                "DBColumn": [
-                                    "",
-                                    "",
-                                    "",
-                                    "",
-                                    "",
-                                    ""
-                                ]
-                            },
-                            "FromSimpleRelationships": {
-                                "DBForeignKey": ""
-                            },
-                            "MasterView": {
-                                "DBTable": ""
-                            }
-                        },
-                        {
-                            "ModelChildren": {
-                                "DBColumn": [
-                                    {
-                                        "ForeignKeyConstraints": {
-                                            "DBForeignKeyConstraint": ""
-                                        }
-                                    },
-                                    {
-                                        "ForeignKeyConstraints": {
-                                            "DBForeignKeyConstraint": ""
-                                        }
-                                    },
-                                    "",
-                                    ""
-                                ]
-                            },
-                            "ToSimpleRelationships": {
-                                "DBForeignKey": [
-                                    "",
-                                    ""
-                                ]
-                            },
-                            "MasterView": {
-                                "DBTable": ""
-                            }
-                        },
-                        {
-                            "ModelChildren": {
-                                "DBColumn": [
-                                    "",
-                                    "",
-                                    ""
-                                ]
-                            },
-                            "FromSimpleRelationships": {
-                                "DBForeignKey": ""
-                            },
-                            "MasterView": {
-                                "DBTable": ""
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-        "Diagrams": {
-            "ERDiagram": {
-                "Shapes": {
-                    "DBTable": [
-                        {
-                            "ElementFont": "",
-                            "Line": {
-                                "Stroke": ""
-                            },
-                            "Caption": "",
-                            "FillColor": "",
-                            "CompartmentFont": ""
-                        },
-                        {
-                            "ElementFont": "",
-                            "Line": {
-                                "Stroke": ""
-                            },
-                            "Caption": "",
-                            "FillColor": "",
-                            "CompartmentFont": ""
-                        },
-                        {
-                            "ElementFont": "",
-                            "Line": {
-                                "Stroke": ""
-                            },
-                            "Caption": "",
-                            "FillColor": "",
-                            "CompartmentFont": ""
-                        },
-                        {
-                            "ElementFont": "",
-                            "Line": {
-                                "Stroke": ""
-                            },
-                            "Caption": "",
-                            "FillColor": "",
-                            "CompartmentFont": ""
-                        }
-                    ]
-                },
-                "Connectors": {
-                    "DBForeignKey": [
-                        {
-                            "ElementFont": "",
-                            "Line": {
-                                "Stroke": ""
-                            },
-                            "Caption": "",
-                            "Points": {
-                                "Point": [
-                                    "",
-                                    ""
-                                ]
-                            }
-                        },
-                        {
-                            "ElementFont": "",
-                            "Line": {
-                                "Stroke": ""
-                            },
-                            "Caption": "",
-                            "Points": {
-                                "Point": [
-                                    "",
-                                    ""
-                                ]
-                            }
-                        },
-                        {
-                            "ElementFont": "",
-                            "Line": {
-                                "Stroke": ""
-                            },
-                            "Caption": "",
-                            "Points": {
-                                "Point": [
-                                    "",
-                                    ""
-                                ]
-                            }
-                        }
-                    ]
-                }
-            }
-        }
-    }
-}
+[
+	{
+		"id": "xErEVD6D.AAAAQyW",
+		"name": "Place",
+		"dataModel": "Physical",
+		"columns": [
+			{
+				"id": "FTHEVD6D.AAAAQyh",
+				"name": "id",
+				"type": "int",
+				"unique": false,
+				"length": 10,
+				"primary": true,
+				"generated": "increment",
+				"references": null
+			},
+			{
+				"id": "3eWUVD6D.AAAAQz1",
+				"name": "code",
+				"type": "varchar",
+				"unique": true,
+				"length": 20,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "K_HEVD6D.AAAAQyk",
+				"name": "name",
+				"type": "varchar",
+				"unique": false,
+				"length": 255,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "W.R3VD6D.AAAARS4",
+				"name": "description",
+				"type": "varchar",
+				"unique": false,
+				"length": 255,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "uieKnD6GAqAAFBD1",
+				"name": "Typeid",
+				"type": "int",
+				"unique": false,
+				"length": 10,
+				"primary": false,
+				"generated": "native",
+				"references": "ujEE7D6GAqAAFA12"
+			},
+			{
+				"id": "5fgpgj6GAqAAFBMw",
+				"name": "photoUrl",
+				"type": "varchar",
+				"unique": false,
+				"length": 255,
+				"primary": false,
+				"references": null
+			}
+		]
+	},
+	{
+		"id": "v0jMVD6D.AAAAQ4a",
+		"name": "User",
+		"dataModel": "Physical",
+		"columns": [
+			{
+				"id": "7XTMVD6D.AAAAQ4o",
+				"name": "id",
+				"type": "int",
+				"unique": false,
+				"length": 10,
+				"primary": true,
+				"generated": "increment",
+				"references": null
+			},
+			{
+				"id": "MKzMVD6D.AAAAQ4r",
+				"name": "uid",
+				"type": "varchar",
+				"unique": true,
+				"length": 50,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "qtLMVD6D.AAAAQ4u",
+				"name": "name",
+				"type": "varchar",
+				"unique": false,
+				"length": 50,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "bP8iVD6D.AAAAQ5q",
+				"name": "email",
+				"type": "varchar",
+				"unique": true,
+				"length": 50,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "yGCiVD6D.AAAAQ5t",
+				"name": "verifiedEmail",
+				"type": "varchar",
+				"unique": true,
+				"length": 50,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "VeSiVD6D.AAAAQ5w",
+				"name": "photoUrl",
+				"type": "varchar",
+				"unique": false,
+				"length": 255,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "9GmiVD6D.AAAAQ5z",
+				"name": "password",
+				"type": "varchar",
+				"unique": false,
+				"length": 255,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "FDWiVD6D.AAAAQ52",
+				"name": "phoneNumber",
+				"type": "varchar",
+				"unique": false,
+				"length": 20,
+				"primary": false,
+				"references": null
+			}
+		]
+	},
+	{
+		"id": "S40SVD6D.AAAAQ8A",
+		"name": "Task",
+		"dataModel": "Physical",
+		"columns": [
+			{
+				"id": "zdKSVD6D.AAAAQ8Y",
+				"name": "id",
+				"type": "int",
+				"unique": false,
+				"length": 10,
+				"primary": true,
+				"generated": "increment",
+				"references": null
+			},
+			{
+				"id": "r_KSVD6D.AAAAQ8b",
+				"name": "name",
+				"type": "varchar",
+				"unique": false,
+				"length": 50,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "xZDSVD6D.AAAAQ9n",
+				"name": "description",
+				"type": "varchar",
+				"unique": false,
+				"length": 255,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "9SqHVD6D.AAAARNv",
+				"name": "deadLine",
+				"type": "date",
+				"unique": false,
+				"length": 0,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "ltTSVD6D.AAAAQ9q",
+				"name": "status",
+				"type": "bit",
+				"unique": false,
+				"length": 0,
+				"primary": false,
+				"default": 0,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "Hi7yVD6D.AAAARAb",
+				"name": "Placeid",
+				"type": "int",
+				"unique": false,
+				"length": 10,
+				"primary": false,
+				"generated": "native",
+				"references": "FTHEVD6D.AAAAQyh"
+			}
+		]
+	},
+	{
+		"id": "0g.yVD6D.AAAAQ.v",
+		"name": "User_Place",
+		"dataModel": "Logical",
+		"columns": [
+			{
+				"id": "Kg.yVD6D.AAAAQ.x",
+				"name": "Userid",
+				"type": "int",
+				"unique": false,
+				"length": 10,
+				"primary": true,
+				"generated": "native",
+				"references": "7XTMVD6D.AAAAQ4o"
+			},
+			{
+				"id": "Bg.yVD6D.AAAAQ.3",
+				"name": "Placeid",
+				"type": "int",
+				"unique": false,
+				"length": 10,
+				"primary": true,
+				"generated": "native",
+				"references": "FTHEVD6D.AAAAQyh"
+			},
+			{
+				"id": "O0xyVD6D.AAAAQ_F",
+				"name": "startTime",
+				"type": "int",
+				"unique": false,
+				"length": 5,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "dawqVD6D.AAAARD.",
+				"name": "endTime",
+				"type": "int",
+				"unique": false,
+				"length": 5,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "4BzqVD6D.AAAAREn",
+				"name": "startDate",
+				"type": "date",
+				"unique": false,
+				"length": 0,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "hdLqVD6D.AAAAREq",
+				"name": "endDate",
+				"type": "date",
+				"unique": false,
+				"length": 0,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			}
+		]
+	},
+	{
+		"id": ".LCHVD6D.AAAARNT",
+		"name": "User_Task",
+		"dataModel": "Logical",
+		"columns": [
+			{
+				"id": "5LCHVD6D.AAAARNV",
+				"name": "Userid",
+				"type": "int",
+				"unique": false,
+				"length": 10,
+				"primary": true,
+				"generated": "native",
+				"references": "7XTMVD6D.AAAAQ4o"
+			},
+			{
+				"id": "DLCHVD6D.AAAARNb",
+				"name": "Taskid",
+				"type": "int",
+				"unique": false,
+				"length": 10,
+				"primary": true,
+				"generated": "native",
+				"references": "zdKSVD6D.AAAAQ8Y"
+			},
+			{
+				"id": "yWN3VD6D.AAAARTj",
+				"name": "startDate",
+				"type": "date",
+				"unique": false,
+				"length": 0,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "U093VD6D.AAAARTm",
+				"name": "endDate",
+				"type": "date",
+				"unique": false,
+				"length": 0,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			}
+		]
+	},
+	{
+		"id": ".qV47D6GAqAAFA0y",
+		"name": "Type",
+		"dataModel": "Physical",
+		"columns": [
+			{
+				"id": "ujEE7D6GAqAAFA12",
+				"name": "id",
+				"type": "int",
+				"unique": false,
+				"length": 10,
+				"primary": true,
+				"generated": "increment",
+				"references": null
+			},
+			{
+				"id": "wgkE7D6GAqAAFA15",
+				"name": "name",
+				"type": "varchar",
+				"unique": true,
+				"length": 50,
+				"primary": false,
+				"references": null
+			}
+		]
+	},
+	{
+		"id": "M5UB7D6GAqAAFBBv",
+		"name": "Place_Place",
+		"dataModel": "Logical",
+		"columns": [
+			{
+				"id": "K5UB7D6GAqAAFBBx",
+				"name": "placeParent_id",
+				"type": "int",
+				"unique": false,
+				"length": 10,
+				"primary": true,
+				"generated": "native",
+				"references": "FTHEVD6D.AAAAQyh"
+			},
+			{
+				"id": "u5UB7D6GAqAAFBB3",
+				"name": "placeChild_id",
+				"type": "int",
+				"unique": false,
+				"length": 10,
+				"primary": true,
+				"generated": "native",
+				"references": "FTHEVD6D.AAAAQyh"
+			}
+		]
+	}
+]
