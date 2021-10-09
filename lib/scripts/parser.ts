@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { Table, Column } from '../models/table'
+import { Table, Column, Reference } from '../models/table'
 
 let vpp = require('../../assets/vpp.json')
 let rawVpp = JSON.stringify(vpp).replace(/@_/igm, '')
@@ -17,7 +17,7 @@ const getDBTable = ({ Models }) => {
 	return DB_keys[DBTableKey](Models).DBTable
 }
 
-let database: Table[] = getDBTable(vpp.Project).map(table => { 
+let tables: Table[] = getDBTable(vpp.Project).map(table => { 
 	return {
 		id: table.Id,
 		marked: false,
@@ -44,13 +44,41 @@ let database: Table[] = getDBTable(vpp.Project).map(table => {
 				default: column.DefaultValue,
 				generated: column.IdGenerator,
 				references: ForeignKeyConstraints
-					? ForeignKeyConstraints.DBForeignKeyConstraint.RefColumn
+					? {
+						id: ForeignKeyConstraints.DBForeignKeyConstraint.RefColumn,
+
+					} as Reference
 					: null
 			} as Column
 		})
 	} as Table
 })
 
-fs.writeFileSync('assets/database.json', JSON.stringify(database), {
+const getReference = (tables: Table[], idReference: string): Reference => { 
+	let columnName: string
+	let { name } = tables.find(({ columns }) => columns.some(({ id, name }) => {
+		if (id == idReference) { 
+			columnName = name
+			return true
+		}
+
+		return false
+	}))
+	return {
+		id: idReference,
+		tableName: name,
+		columnName: columnName,
+	} as Reference
+}
+
+tables.forEach(table => { 
+	table.columns.forEach(column => {
+		if (column.references) { 
+			column.references = getReference(tables, column.references.id)
+		}
+	})
+})
+
+fs.writeFileSync('assets/database.json', JSON.stringify(tables), {
 	encoding: 'utf-8'
 })
