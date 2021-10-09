@@ -5,10 +5,19 @@ let vpp = require('../../assets/vpp.json')
 let rawVpp = JSON.stringify(vpp).replace(/@_/igm, '')
 
 vpp = JSON.parse(rawVpp)
-
 fs.writeFileSync('assets/vpp.json', rawVpp, { encoding: 'utf-8' })
 
-let database: Table[] = vpp.Project.Models.DBTable.map(table => { 
+const DB_keys = {
+	DBTable: (models) => models,
+	Model: (models) => models.Model.ModelChildren,
+}
+
+const getDBTable = ({ Models }) => {	
+	let DBTableKey = Object.keys(Models).find(k => DB_keys[k])
+	return DB_keys[DBTableKey](Models).DBTable
+}
+
+let database: Table[] = getDBTable(vpp.Project).map(table => { 
 	return {
 		id: table.Id,
 		name: table.Name,
