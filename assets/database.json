@@ -1,0 +1,251 @@
+{
+    "Project": {
+        "ProjectInfo": {
+            "OrmInfo": "",
+            "LogicalView": "",
+            "ProjectOptions": {
+                "DiagramOptions": {
+                    "DefaultHtmlDocFont": ""
+                },
+                "GeneralOptions": "",
+                "InstantReverseOptions": "",
+                "ModelQualityOptions": "",
+                "ORMOptions": "",
+                "RequirementDiagramOptions": "",
+                "StateCodeEngineOptions": "",
+                "WarningOptions": "",
+                "PORepository": {
+                    "POUserIDFormats": {
+                        "POUserIDFormat": [
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ]
+                    }
+                }
+            }
+        },
+        "Models": {
+            "DataType": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+            ],
+            "ModelRelationshipContainer": {
+                "ModelChildren": {
+                    "ModelRelationshipContainer": {
+                        "ModelChildren": {
+                            "DBForeignKey": [
+                                {
+                                    "MasterView": {
+                                        "DBForeignKey": ""
+                                    }
+                                },
+                                {
+                                    "MasterView": {
+                                        "DBForeignKey": ""
+                                    }
+                                },
+                                {
+                                    "MasterView": {
+                                        "DBForeignKey": ""
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "Model": {
+                "SubDiagrams": {
+                    "ERDiagram": ""
+                },
+                "ModelChildren": {
+                    "DBTable": [
+                        {
+                            "ModelChildren": {
+                                "DBColumn": [
+                                    "",
+                                    {
+                                        "ForeignKeyConstraints": {
+                                            "DBForeignKeyConstraint": ""
+                                        }
+                                    },
+                                    "",
+                                    "",
+                                    ""
+                                ]
+                            },
+                            "FromSimpleRelationships": {
+                                "DBForeignKey": ""
+                            },
+                            "ToSimpleRelationships": {
+                                "DBForeignKey": ""
+                            },
+                            "MasterView": {
+                                "DBTable": ""
+                            }
+                        },
+                        {
+                            "ModelChildren": {
+                                "DBColumn": [
+                                    "",
+                                    "",
+                                    "",
+                                    "",
+                                    "",
+                                    ""
+                                ]
+                            },
+                            "FromSimpleRelationships": {
+                                "DBForeignKey": ""
+                            },
+                            "MasterView": {
+                                "DBTable": ""
+                            }
+                        },
+                        {
+                            "ModelChildren": {
+                                "DBColumn": [
+                                    {
+                                        "ForeignKeyConstraints": {
+                                            "DBForeignKeyConstraint": ""
+                                        }
+                                    },
+                                    {
+                                        "ForeignKeyConstraints": {
+                                            "DBForeignKeyConstraint": ""
+                                        }
+                                    },
+                                    "",
+                                    ""
+                                ]
+                            },
+                            "ToSimpleRelationships": {
+                                "DBForeignKey": [
+                                    "",
+                                    ""
+                                ]
+                            },
+                            "MasterView": {
+                                "DBTable": ""
+                            }
+                        },
+                        {
+                            "ModelChildren": {
+                                "DBColumn": [
+                                    "",
+                                    "",
+                                    ""
+                                ]
+                            },
+                            "FromSimpleRelationships": {
+                                "DBForeignKey": ""
+                            },
+                            "MasterView": {
+                                "DBTable": ""
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "Diagrams": {
+            "ERDiagram": {
+                "Shapes": {
+                    "DBTable": [
+                        {
+                            "ElementFont": "",
+                            "Line": {
+                                "Stroke": ""
+                            },
+                            "Caption": "",
+                            "FillColor": "",
+                            "CompartmentFont": ""
+                        },
+                        {
+                            "ElementFont": "",
+                            "Line": {
+                                "Stroke": ""
+                            },
+                            "Caption": "",
+                            "FillColor": "",
+                            "CompartmentFont": ""
+                        },
+                        {
+                            "ElementFont": "",
+                            "Line": {
+                                "Stroke": ""
+                            },
+                            "Caption": "",
+                            "FillColor": "",
+                            "CompartmentFont": ""
+                        },
+                        {
+                            "ElementFont": "",
+                            "Line": {
+                                "Stroke": ""
+                            },
+                            "Caption": "",
+                            "FillColor": "",
+                            "CompartmentFont": ""
+                        }
+                    ]
+                },
+                "Connectors": {
+                    "DBForeignKey": [
+                        {
+                            "ElementFont": "",
+                            "Line": {
+                                "Stroke": ""
+                            },
+                            "Caption": "",
+                            "Points": {
+                                "Point": [
+                                    "",
+                                    ""
+                                ]
+                            }
+                        },
+                        {
+                            "ElementFont": "",
+                            "Line": {
+                                "Stroke": ""
+                            },
+                            "Caption": "",
+                            "Points": {
+                                "Point": [
+                                    "",
+                                    ""
+                                ]
+                            }
+                        },
+                        {
+                            "ElementFont": "",
+                            "Line": {
+                                "Stroke": ""
+                            },
+                            "Caption": "",
+                            "Points": {
+                                "Point": [
+                                    "",
+                                    ""
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
