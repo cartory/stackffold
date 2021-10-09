@@ -6,8 +6,8 @@ let database: Table[] = JSON.parse(
 
 const getForeignKeys = (columns: Column[]): string[] => { 
 	return columns
-		.filter(({ references }) => references)
-		.map(({ references }) => references)
+		.filter(({ references }) => references.id)
+		.map(({ references }) => references.id)
 }
 
 const getReferencedTables = (tables: Table[], foreignKeys: string[]): Table[] => { 
