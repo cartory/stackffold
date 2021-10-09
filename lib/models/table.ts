@@ -2,6 +2,8 @@ export interface Table {
 	id: string
 	name: string
 	dataModel: string
+	
+	marked: boolean
 	columns: Column[]
 }
 
@@ -10,7 +12,7 @@ export interface Column {
 	name: string
 	type: string
 	generated?: string
-
+	
 	default?: any
 	length?: number
 
