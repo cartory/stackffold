@@ -9,17 +9,16 @@ export interface Column {
 	id: string
 	name: string
 	type: string
-	comment: string
-	generated: string
+	generated?: string
 
-	default: any
-	length: number
+	default?: any
+	length?: number
 
-	unique: boolean
-	primary: boolean
-	nullable: boolean
+	unique?: boolean
+	primary?: boolean
+	nullable?: boolean
 
-	references: string
+	references?: string
 }
 
 export interface TableFactory {
