@@ -7,8 +7,11 @@
 		"lib": "lib"
 	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"parse": "xml2js assets/.xml -ns -a -o assets/database.json"
+		"test": "ts-node lib/scripts/parser.ts",
+		"parse": "xml2js assets/vpp.xml -ns -o assets/vpp.json && ts-node lib/scripts/parser",
+		"drop": "rm -rf src src/controllers src/models",
+		"mkdir": "mkdir src src/controllers src/models",
+		"gen": "npm run drop && npm run mkdir && ts-node lib/scripts/generator"
 	},
 	"repository": {
 		"type": "git",
