@@ -1,8 +1,11 @@
 # directories
-node_modules
+/node_modules
 
+/src
+/assets
 #files
 .env
+
 # assets files
 vpp.json
 database.json
