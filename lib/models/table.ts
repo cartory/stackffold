@@ -1,3 +1,5 @@
+import fs from 'fs'
+
 export interface Table {
 	id: string
 	name: string
@@ -30,8 +32,18 @@ export interface Reference {
 	relationship: string
 }
 
-export interface TableFactory {
-	createModel(table: Table): string
-	createRoute(tableName: string): string
-	createController(tableName: string): string
+export abstract class TableBuilder {
+	constructor(
+		protected path: string,
+		protected data: string,
+	) { }
+	
+	protected writeFile(): void {
+		fs.writeFile(this.path, this.data, {
+			encoding: 'utf-8'
+		}, err => err && console.error(err))
+	}
+
+	public abstract buildModel(table: Table): void
+	public abstract buildController(table: Table): void
 }
