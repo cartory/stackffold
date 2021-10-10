@@ -43,7 +43,7 @@ export class TypeOrmBuilder extends TableBuilder {
 		this.data = (''
 			+ "import { Response } from 'express'\n"
 			+ "import { getRepository } from 'typeorm'\n"
-			+ "import {\r\tResponse as Res,\r\tGet, Post, Delete,\r\tBody, Params, Controller\r} from '@decorators/express'"
+			+ "import {\r\tResponse as Res,\r\tGet, Post, Delete,\r\tBody, Params, Controller,\r} from '@decorators/express'"
 			+ `\r\n\nimport { ${name}, ${name}Entity } from '../models/${name}'\r\n\n`
 			+ `@Controller('/${lowerName}s')\r`
 			+ `export class ${name}Controller {\r\tprotected repository = getRepository(${name}Entity)\r\n\n`
