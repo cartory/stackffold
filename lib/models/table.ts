@@ -33,10 +33,8 @@ export interface Reference {
 }
 
 export abstract class TableBuilder {
-	constructor(
-		protected path: string,
-		protected data: string,
-	) { }
+	protected path: string
+	protected data: string
 	
 	protected writeFile(): void {
 		fs.writeFile(this.path, this.data, {
