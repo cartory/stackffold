@@ -25,8 +25,9 @@ const generateFiles = (tables: Table[], builder: TableBuilder) => {
 			let referencedTables: Table[] = getReferencedTables(tables, foreignKeys)
 			
 			generateFiles(referencedTables, builder)
+			
+			builder.buildTable(table)
 
-			builder.buildModel(table)
 			console.log(`${table.name} => GENERATED`);
 		}
 	})
