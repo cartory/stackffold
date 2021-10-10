@@ -2,10 +2,9 @@
 /node_modules
 
 /src
-/assets
 #files
 .env
 
 # assets files
-vpp.json
-database.json
+assets/vpp.json
+assets/database.json
