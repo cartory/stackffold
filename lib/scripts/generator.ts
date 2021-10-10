@@ -27,10 +27,10 @@ const generateFiles = (tables: Table[], builder: TableBuilder) => {
 			generateFiles(referencedTables, builder)
 			
 			builder.buildTable(table)
-
-			console.log(`${table.name} => GENERATED`);
 		}
 	})
 }
 
-generateFiles(database, new TypeOrmBuilder())
+let builder = new TypeOrmBuilder()
+generateFiles(database, builder)
+builder.buildRoutes()
