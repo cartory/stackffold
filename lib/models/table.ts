@@ -42,6 +42,13 @@ export abstract class TableBuilder {
 		}, err => err && console.error(err))
 	}
 
+	public buildTable(table: Table): void { 
+		this.buildModel(table)
+		if (table.dataModel == 'Physical') { 
+			this.buildController(table)
+		}
+	}
+
 	public abstract buildModel(table: Table): void
 	public abstract buildController(table: Table): void
 }
