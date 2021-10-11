@@ -5,10 +5,12 @@ export class TypeOrmBuilder extends TableBuilder {
 	protected buildIndex(): void {
 		this.data = (''
 			+ "import cors from 'cors'\nimport dotenv from 'dotenv'\nimport express from 'express'\n\n"
+			// import typeOrm
 			+ "import { createConnection } from 'typeorm'\n\n"
 			+ "dotenv.config()\nconst app = express()\n\n"
-			+ "const main = async (server: express.Express): Promise<void> => {\n\n"
+			+ "const main = async (server: express.Express): Promise<void> => {\n"
 			+ "\tprocess.env.NODE_ENV == 'development' && server.use(require('morgan')('dev'))\n\n"
+			// typeOrmConnection
 			+ "\tawait createConnection({\n\t\ttype: 'mysql',\n\t\turl: process.env.DATABASE_URL,\n\t\tentities: [ 'src/models/*.ts' ],\n\t})\n\n"
 			+ "\tserver.use('/api', (await import('./router')).default)\n"
 			+ "\tserver.listen(process.env.PORT || 80, () => {\n\t\tconsole.log('\x1b[32mDB Connected Sucessfully!\x1b[0m')\n"
