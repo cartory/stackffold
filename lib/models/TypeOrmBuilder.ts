@@ -2,7 +2,27 @@ import { getDataType } from '../utils/constants'
 import { Table, TableBuilder } from './table'
 
 export class TypeOrmBuilder extends TableBuilder {
-	public buildModel({ name, columns }: Table): void {
+	protected buildIndex(): void {
+		this.data = (''
+			+ "import cors from 'cors'\nimport dotenv from 'dotenv'\nimport express from 'express'\n\n"
+			+ "import { createConnection } from 'typeorm'\n\n"
+			+ "dotenv.config()\nconst app = express()\n\n"
+			+ "const main = async (server: express.Express): Promise<void> => {\n\n"
+			+ "\tprocess.env.NODE_ENV == 'development' && server.use(require('morgan')('dev'))\n\n"
+			+ "\tawait createConnection({\n\t\ttype: 'mysql',\n\t\turl: process.env.DATABASE_URL,\n\t\tentities: [ 'src/models/*.ts' ],\n\t})\n\n"
+			+ "\tserver.use('/api', (await import('./router')).default)\n"
+			+ "\tserver.listen(process.env.PORT || 80, () => {\n\t\tconsole.log('\x1b[32mDB Connected Sucessfully!\x1b[0m')\n"
+			+ "\t\tconsole.log(`Server running on [33mhttp://${process.env.HOST}:${process.env.PORT}[0m`)\n\t})\n}\n\n"
+			+ "app\n\t.use(cors())\n\t.use(express.urlencoded({ extended: true }))\n\t.use(express.json({ limit: process.env.BODY_SIZE }))\n"
+			+ "\t// ROUTES\n\t.get('/', (_, res) => res.send('<h1>Welcome to Generated API 👋 </h1>'))\n\n"
+			+ "main(app)\n\t.then(() => console.log(new Date()))\n\t.catch(err => console.error(err))"
+		)
+
+		this.path = 'src/index.ts'
+		this.writeFile()
+	}
+
+	protected buildModel({ name, columns }: Table): void {
 		this.data = (''
 			+ "import { EntitySchema } from 'typeorm'\r\n\n"
 			+ `export interface ${name} {\r`
@@ -19,6 +39,8 @@ export class TypeOrmBuilder extends TableBuilder {
 				
 				jsonColumn['generated'] = jsonColumn['generated'] == 'increment'
 
+				getDataType(jsonColumn['type']) == 'number' && delete jsonColumn['length']
+
 				for (const key in jsonColumn) {
 					let value = jsonColumn[key]
 					if (jsonColumn[key]) { 
@@ -33,16 +55,14 @@ export class TypeOrmBuilder extends TableBuilder {
 		)
 
 		this.path = `src/models/${name}.ts`
-
 		this.writeFile()
 	}
 
-	public buildController({ name }: Table): void {
+	protected buildController({ name }: Table): void {
 		let lowerName: string = name.toLocaleLowerCase()
 
 		this.data = (''
-			+ "import { Response } from 'express'\n"
-			+ "import { getRepository } from 'typeorm'\n"
+			+ "import { Response } from 'express'\nimport { getRepository } from 'typeorm'\n"
 			+ "import {\r\tResponse as Res,\r\tGet, Post, Delete,\r\tBody, Params, Controller,\r} from '@decorators/express'"
 			+ `\r\n\nimport { ${name}, ${name}Entity } from '../models/${name}'\r\n\n`
 			+ `@Controller('/${lowerName}s')\r`
