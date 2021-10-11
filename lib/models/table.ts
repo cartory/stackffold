@@ -36,12 +36,6 @@ export abstract class TableBuilder {
 	protected path: string
 	protected data: string
 	protected tableNames: string[] = []
-	
-	protected writeFile(): void {
-		fs.writeFile(this.path, this.data, {
-			encoding: 'utf-8'
-		}, err => err && console.error(err))
-	}
 
 	public buildTable(table: Table): void { 
 		this.buildModel(table)
@@ -53,7 +47,18 @@ export abstract class TableBuilder {
 		console.log(`${table.name} => GENERATED`);
 	}
 
-	public buildRoutes(): void {
+	public buildServer(): void {
+		this.buildIndex()
+		this.buildRoutes()
+	}
+
+	protected writeFile(): void {
+		fs.writeFile(this.path, this.data, {
+			encoding: 'utf-8'
+		}, err => err && console.error(err))
+	}
+
+	protected buildRoutes(): void {
 		this.tableNames.sort((a, b) => a.length - b.length)
 
 		this.data = (''
@@ -63,13 +68,14 @@ export abstract class TableBuilder {
 				return `import { ${name}Controller } from './controllers/${name}Controller'`
 			}).join('\n')}\n\nconst router = Router()\n\n`
 			+ `attachControllers(router, [\n${this.tableNames.map(name => `\t${name}Controller,`).join('\n')}\n])\n\n`
-			+ 'export { router }'
+			+ 'export default router'
 		)
-		this.path = 'src/routes.ts'
 
+		this.path = 'src/router.ts'
 		this.writeFile()
 	}
 
-	public abstract buildModel(table: Table): void
-	public abstract buildController(table: Table): void
+	protected abstract buildIndex(): void
+	protected abstract buildModel(table: Table): void
+	protected abstract buildController(table: Table): void
 }
