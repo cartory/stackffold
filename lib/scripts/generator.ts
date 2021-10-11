@@ -33,4 +33,4 @@ const generateFiles = (tables: Table[], builder: TableBuilder) => {
 
 let builder = new TypeOrmBuilder()
 generateFiles(database, builder)
-builder.buildRoutes()
+builder.buildServer()
