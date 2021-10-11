@@ -24,13 +24,11 @@ let tables: Table[] = getDBTable(vpp.Project).map(table => {
 		name: table.Name,
 		dataModel: table.DataModel,
 		columns: table.ModelChildren.DBColumn.map(column => { 
-			let { ForeignKeyConstraints } = column
-			
-			let refColumn: string
-			
-			if (ForeignKeyConstraints) { 
-				refColumn = ForeignKeyConstraints.DBForeignKeyConstraint.RefColumn
-			}			
+			let { ForeignKeyConstraints } = column		
+
+			let refColum: Reference = ForeignKeyConstraints ? {
+				id: ForeignKeyConstraints.FBForeignKeyConstraint.RefColumn as string
+			} as Reference : null
 			
 			return {
 				id: column.Id,
@@ -43,12 +41,7 @@ let tables: Table[] = getDBTable(vpp.Project).map(table => {
 				primary: column.PrimaryKey,
 				default: column.DefaultValue,
 				generated: column.IdGenerator,
-				references: ForeignKeyConstraints
-					? {
-						id: ForeignKeyConstraints.DBForeignKeyConstraint.RefColumn,
-
-					} as Reference
-					: null
+				references: refColum,
 			} as Column
 		})
 	} as Table
