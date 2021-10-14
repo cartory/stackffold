@@ -13,7 +13,7 @@
 		"parse": "xml2js assets/vpp.xml -ns -o assets/vpp.json && ts-node lib/scripts/parser",
 		"drop": "rm -rf src src/controllers src/models",
 		"mkdir": "mkdir src src/controllers src/models",
-		"gen": "npm run drop && npm run mkdir && ts-node lib/scripts/generator"
+		"gen": "npm run parse && npm run drop && npm run mkdir && ts-node lib/scripts/generator"
 	},
 	"repository": {
 		"type": "git",
@@ -35,14 +35,16 @@
 	"homepage": "https://github.com/cartory/stackffold#readme",
 	"dependencies": {
 		"@decorators/express": "^2.6.0",
-		"@types/cors": "^2.8.12",
-		"@types/dotenv": "^8.2.0",
-		"@types/express": "^4.17.13",
+		"cors": "^2.8.5",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
 		"swagger-ui-express": "^4.1.6"
 	},
 	"devDependencies": {
+		"@types/cors": "^2.8.12",
+		"@types/dotenv": "^8.2.0",
+		"@types/express": "^4.17.13",
 		"@types/morgan": "^1.9.3",
-		"cors": "^2.8.5",
 		"fast-xml-parser": "^3.20.3",
 		"morgan": "^1.10.0",
 		"nodemon": "^2.0.12"
