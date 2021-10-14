@@ -25,9 +25,9 @@ let tables: Table[] = getDBTable(vpp.Project).map(table => {
 		dataModel: table.DataModel,
 		columns: table.ModelChildren.DBColumn.map(column => { 
 			let { ForeignKeyConstraints } = column		
-
+			
 			let refColum: Reference = ForeignKeyConstraints ? {
-				id: ForeignKeyConstraints.FBForeignKeyConstraint.RefColumn as string
+				id: ForeignKeyConstraints.DBForeignKeyConstraint.RefColumn as string
 			} as Reference : null
 			
 			return {
