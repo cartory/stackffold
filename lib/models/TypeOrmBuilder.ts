@@ -13,7 +13,7 @@ export class TypeOrmBuilder extends TableBuilder {
 			// typeOrmConnection
 			+ "\tawait createConnection({\n\t\ttype: 'mysql',\n\t\turl: process.env.DATABASE_URL,\n\t\tentities: [ 'src/models/*.ts' ],\n\t})\n\n"
 			+ "\tserver.use('/api', (await import('./router')).default)\n"
-			+ "\tserver.listen(process.env.PORT || 80, () => {\n\t\tconsole.log('\x1b[32mDB Connected Sucessfully!\x1b[0m')\n"
+			+ "\tserver.listen(process.env.PORT || 3000, () => {\n\t\tconsole.log('\x1b[32mDB Connected Sucessfully!\x1b[0m')\n"
 			+ "\t\tconsole.log(`Server running on [33mhttp://${process.env.HOST}:${process.env.PORT}[0m`)\n\t})\n}\n\n"
 			+ "app\n\t.use(cors())\n\t.use(express.urlencoded({ extended: true }))\n\t.use(express.json({ limit: process.env.BODY_SIZE }))\n"
 			+ "\t// ROUTES\n\t.get('/', (_, res) => res.send('<h1>Welcome to Generated API 👋 </h1>'))\n\n"

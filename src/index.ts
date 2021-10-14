@@ -17,7 +17,7 @@ const main = async (server: express.Express): Promise<void> => {
 	})
 
 	server.use('/api', (await import('./router')).default)
-	server.listen(process.env.PORT || 3000, () => {
+	server.listen(process.env.PORT || 80, () => {
 		console.log('[32mDB Connected Sucessfully![0m')
 		console.log(`Server running on [33mhttp://${process.env.HOST}:${process.env.PORT}[0m`)
 	})
