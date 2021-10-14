@@ -66,6 +66,7 @@
 				"unique": false,
 				"length": 255,
 				"primary": false,
+				"generated": "native",
 				"references": null
 			}
 		]
@@ -153,6 +154,7 @@
 				"unique": false,
 				"length": 20,
 				"primary": false,
+				"generated": "native",
 				"references": null
 			}
 		]
@@ -227,6 +229,16 @@
 					"tableName": "Place",
 					"columnName": "id"
 				}
+			},
+			{
+				"id": "Fit3fj6GAqAAFAyn",
+				"name": "photoUrl",
+				"type": "varchar",
+				"unique": false,
+				"length": 255,
+				"primary": false,
+				"generated": "native",
+				"references": null
 			}
 		]
 	},
@@ -385,6 +397,7 @@
 				"unique": true,
 				"length": 50,
 				"primary": false,
+				"generated": "native",
 				"references": null
 			}
 		]
@@ -420,6 +433,134 @@
 				"references": {
 					"id": "FTHEVD6D.AAAAQyh",
 					"tableName": "Place",
+					"columnName": "id"
+				}
+			}
+		]
+	},
+	{
+		"id": "Q7V9fj6GAqAAFAnM",
+		"marked": false,
+		"name": "Equipment",
+		"dataModel": "Physical",
+		"columns": [
+			{
+				"id": "L9f9fj6GAqAAFAnW",
+				"name": "id",
+				"type": "int",
+				"unique": false,
+				"length": 11,
+				"primary": true,
+				"generated": "increment",
+				"references": null
+			},
+			{
+				"id": "cff9fj6GAqAAFAnZ",
+				"name": "description",
+				"type": "text",
+				"unique": false,
+				"length": 0,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "5sADfj6GAqAAFAnc",
+				"name": "code",
+				"type": "varchar",
+				"unique": true,
+				"length": 100,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "WPG3fj6GAqAAFAx3",
+				"name": "photoUrl",
+				"type": "varchar",
+				"unique": false,
+				"length": 255,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			}
+		]
+	},
+	{
+		"id": "6mnDfj6GAqAAFApG",
+		"marked": false,
+		"name": "Movement",
+		"dataModel": "Physical",
+		"columns": [
+			{
+				"id": "qS2nfj6GAqAAFAuK",
+				"name": "id",
+				"type": "int",
+				"unique": false,
+				"length": 11,
+				"primary": true,
+				"generated": "increment",
+				"references": null
+			},
+			{
+				"id": "7C6jfj6GAqAAFAq.",
+				"name": "reason",
+				"type": "varchar",
+				"unique": false,
+				"length": 50,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "Eyczfj6GAqAAFArw",
+				"name": "description",
+				"type": "text",
+				"unique": false,
+				"length": 0,
+				"primary": false,
+				"generated": "native",
+				"references": null
+			},
+			{
+				"id": "Tr5nfj6GAqAAFAvA",
+				"name": "placeFrom_id",
+				"type": "int",
+				"unique": false,
+				"length": 10,
+				"primary": false,
+				"generated": "native",
+				"references": {
+					"id": "FTHEVD6D.AAAAQyh",
+					"tableName": "Place",
+					"columnName": "id"
+				}
+			},
+			{
+				"id": "g8Vnfj6GAqAAFAvU",
+				"name": "placeTo_id",
+				"type": "int",
+				"unique": false,
+				"length": 10,
+				"primary": false,
+				"generated": "native",
+				"references": {
+					"id": "FTHEVD6D.AAAAQyh",
+					"tableName": "Place",
+					"columnName": "id"
+				}
+			},
+			{
+				"id": "anaXfj6GAqAAFAxU",
+				"name": "Equipmentid",
+				"type": "int",
+				"unique": false,
+				"length": 11,
+				"primary": false,
+				"generated": "native",
+				"references": {
+					"id": "L9f9fj6GAqAAFAnW",
+					"tableName": "Equipment",
 					"columnName": "id"
 				}
 			}
