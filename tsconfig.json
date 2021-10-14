@@ -1,11 +1,12 @@
 {
 	"compilerOptions": {
-		"experimentalDecorators": true,
+		"jsx": "react",
 		"target": "es2015",
 		"module": "commonjs",
-		"esModuleInterop": true,
 		"moduleResolution": "node",
+		"esModuleInterop": true,
 		"resolveJsonModule": true,
+		"experimentalDecorators": true,
 		"baseUrl": ".",
 		"paths": {
 			"assets": [
