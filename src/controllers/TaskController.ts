@@ -1,16 +1,38 @@
 import { Response } from 'express'
-import { getRepository } from 'typeorm'
-import {	Response as Res,	Get, Post, Delete,	Body, Params, Controller,} from '@decorators/express'
+import { Response as Res, Get, Post, Delete, Body, Params, Controller } from '@decorators/express'
 
-import { Task, TaskEntity } from '../models/Task'
+import Task from '../models/Task'
 
-@Controller('/tasks')export class TaskController {	protected repository = getRepository(TaskEntity)
+@Controller('/tasks')export class TaskController {
+	@Get('/')	async findAll(@Res() res: Response<Task[]>): Promise<Response<Task[]>> {		try {
+			return res.status(200).json(await Task.findAll())
+		} catch (err) {
+			console.error(err)
+		}
+		return res.status(500).send([])
+	}
 
-	@Get('/')	findAll(@Res() res: Response<Task[]>): Promise<Response<Task[]>> {		return this.repository			.find()			.then(tasks => res.json(tasks))			.catch(err => res.set('err', err).json([]))	}
+	@Get('/:id')	async findOne(@Params('id') id: number, @Res() res: Response<Task>): Promise<Response<Task>> {		try {
+			return res.status(200).json(await Task.findOne({ where: { id } }))
+		} catch (err) {
+			console.error(err)
+		}
+		return res.status(500).send(null)
+	}
 
-	@Get('/:id')	findOne(@Params('id') id: number, @Res() res: Response<Task>): Promise<Response<Task>> {		return this.repository			.findOne(id)			.then(task => res.json(task))			.catch(err => res.set('err', err).json(null))	}
+	@Post('/')	async save(@Body() task: Task, @Res() res: Response<Task>): Promise<Response<Task>> {		try {
+			return res.status(201).json((await Task.upsert(task.toJSON()))[0])
+		} catch (err) {
+			console.error(err)
+		}
+		return res.status(500).send(null)
+	}
 
-	@Post('/')	save(@Body() task: Task, @Res() res: Response<Task>): Promise<Response<Task>> {		return this.repository			.save(task)			.then(task => res.json(task))			.catch(err => res.set('err', err).json(null))	}
-
-	@Delete('/:id')	destroy(@Params('id') id: number, @Res() res: Response): Promise<Response> {		return this.repository			.delete(id)			.then(result => res.json(result))			.catch(err => res.set('err', err).json(null))	}
+	@Delete('/:id')	async destroy(@Params('id') id: number, @Res() res: Response): Promise<Response> {		try {
+			return res.status(202).send(await Task.destroy({ where: { id } }))
+		} catch (err) {
+			console.error(err)
+		}
+		return res.status(500).send(null)
+	}
 }

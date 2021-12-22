@@ -1,16 +1,47 @@
-import { Response } from 'express'
-import { getRepository } from 'typeorm'
-import {	Response as Res,	Get, Post, Delete,	Body, Params, Controller,} from '@decorators/express'
+import { Response } from "express"
+import { Response as Res, Get, Post, Delete, Body, Params, Controller } from "@decorators/express"
 
-import { User, UserEntity } from '../models/User'
+import User from "../models/User"
 
-@Controller('/users')export class UserController {	protected repository = getRepository(UserEntity)
+@Controller("/users")
+export class UserController {
+	@Get("/")
+	async findAll(@Res() res: Response<User[]>): Promise<Response<User[]>> {
+		try {
+			return res.status(200).json(await User.findAll())
+		} catch (err) {
+			console.error(err)
+		}
+		return res.status(500).send([])
+	}
 
-	@Get('/')	findAll(@Res() res: Response<User[]>): Promise<Response<User[]>> {		return this.repository			.find()			.then(users => res.json(users))			.catch(err => res.set('err', err).json([]))	}
+	@Get("/:id")
+	async findOne(@Params("id") id: number, @Res() res: Response<User>): Promise<Response<User>> {
+		try {
+			return res.status(200).json(await User.findOne({ where: { id } }))
+		} catch (err) {
+			console.error(err)
+		}
+		return res.status(500).send(null)
+	}
 
-	@Get('/:id')	findOne(@Params('id') id: number, @Res() res: Response<User>): Promise<Response<User>> {		return this.repository			.findOne(id)			.then(user => res.json(user))			.catch(err => res.set('err', err).json(null))	}
+	@Post("/")
+	async save(@Body() user: User, @Res() res: Response<User>): Promise<Response<User>> {
+		try {
+			return res.status(201).json((await User.upsert(user.toJSON()))[0])
+		} catch (err) {
+			console.error(err)
+		}
+		return res.status(500).send(null)
+	}
 
-	@Post('/')	save(@Body() user: User, @Res() res: Response<User>): Promise<Response<User>> {		return this.repository			.save(user)			.then(user => res.json(user))			.catch(err => res.set('err', err).json(null))	}
-
-	@Delete('/:id')	destroy(@Params('id') id: number, @Res() res: Response): Promise<Response> {		return this.repository			.delete(id)			.then(result => res.json(result))			.catch(err => res.set('err', err).json(null))	}
+	@Delete("/:id")
+	async destroy(@Params("id") id: number, @Res() res: Response): Promise<Response> {
+		try {
+			return res.status(202).send(await User.destroy({ where: { id } }))
+		} catch (err) {
+			console.error(err)
+		}
+		return res.status(500).send(null)
+	}
 }
