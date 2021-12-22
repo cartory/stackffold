@@ -25,3 +25,29 @@ export const getDataType = (name: string): string => {
 
 	return 'string'
 }
+
+export const getDataSequelizetype = {
+	int4: (_: any) => `DataTypes.TINYINT`,
+	byte: (_: any) => `DataTypes.TINYINT`,
+
+	bit: (_: any) => `DataTypes.BOOLEAN`,
+	boolean: (_: any) => `DataTypes.BOOLEAN`,
+
+	char: (length: number) => `DataTypes.CHAR(${length})`,
+	float: (length: number) => `DataTypes.FLOAT(${length})`,
+	double: (length: number) => `DataTypes.DOUBLE(${length})`,
+
+	int: (length: number) => `DataTypes.INTEGER({ length: ${length} })`,
+	integer: (length: number) => `DataTypes.INTEGER({ length: ${length} })`,
+
+	long: (length: number) => `DataTypes.BIGINT(${length})`,
+	short: (length: number) => `DataTypes.SMALLINT( ${length})`,
+
+	text: (_: any) => `DataTypes.TEXT`,
+	string: (length: number) => `DataTypes.STRING(${length})`,
+	varchar: (length: number) => `DataTypes.STRING(${length})`,
+
+	date: (_: any) => `DataTypes.DATE`,
+	timestamp: (_: any) => `DataTypes.TIME`,
+}
+
