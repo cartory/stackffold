@@ -1,13 +1,13 @@
 import { Router } from 'express'
 import { attachControllers } from '@decorators/express'
 
-import { TypeController } from './controllers/TypeController'
-import { UserController } from './controllers/UserController'
-import { TaskController } from './controllers/TaskController'
-import { UnitController } from './controllers/UnitController'
-import { PlaceController } from './controllers/PlaceController'
-import { ReasonController } from './controllers/ReasonController'
-import { EquipmentController } from './controllers/EquipmentController'
+import { TypeController } from './controllers/Type.controller'
+import { UserController } from './controllers/User.controller'
+import { TaskController } from './controllers/Task.controller'
+import { UnitController } from './controllers/Unit.controller'
+import { PlaceController } from './controllers/Place.controller'
+import { ReasonController } from './controllers/Reason.controller'
+import { EquipmentController } from './controllers/Equipment.controller'
 
 const router = Router()
 
