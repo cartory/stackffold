@@ -1,11 +1,16 @@
-import { EntitySchema } from 'typeorm'
+import sequelize from '../sequelize'
+import { Model, DataTypes } from 'sequelize'
 
-export interface User_Place {	Userid: number	Placeid: number	startTime: number	endTime: number	startDate: string	endDate: string}
+interface IUser_Place {	Userid: number	Placeid: number	startTime: number	endTime: number	startDate: string	endDate: string}
 
-export const User_PlaceEntity = new EntitySchema<User_Place>({	name: 'User_Place',	tableName: 'User_Place',	columns: {		Userid: {			name: 'Userid',			type: 'int',			primary: true,		},
-		Placeid: {			name: 'Placeid',			type: 'int',			primary: true,		},
-		startTime: {			name: 'startTime',			type: 'int',		},
-		endTime: {			name: 'endTime',			type: 'int',		},
-		startDate: {			name: 'startDate',			type: 'date',		},
-		endDate: {			name: 'endDate',			type: 'date',		},	},
-})
+class User_Place extends Model<IUser_Place> { }
+
+User_Place.init({	Userid: {		key: 'Userid',		type: DataTypes.INTEGER({ length: 10 }),		primaryKey: true,	},
+	Placeid: {		key: 'Placeid',		type: DataTypes.INTEGER({ length: 10 }),		primaryKey: true,	},
+	startTime: {		key: 'startTime',		type: DataTypes.INTEGER({ length: 5 }),	},
+	endTime: {		key: 'endTime',		type: DataTypes.INTEGER({ length: 5 }),	},
+	startDate: {		key: 'startDate',		type: DataTypes.DATE,	},
+	endDate: {		key: 'endDate',		type: DataTypes.DATE,	},
+}, {	sequelize, 	tableName: 'User_Place', 	deletedAt: false,	timestamps: false, })
+
+export default User_Place

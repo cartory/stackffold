@@ -1,7 +1,12 @@
-import { EntitySchema } from 'typeorm'
+import sequelize from '../sequelize'
+import { Model, DataTypes } from 'sequelize'
 
-export interface Type {	id: number	name: string}
+interface IType {	id: number	name: string}
 
-export const TypeEntity = new EntitySchema<Type>({	name: 'Type',	tableName: 'Type',	columns: {		id: {			name: 'id',			type: 'int',			primary: true,			generated: true,		},
-		name: {			name: 'name',			type: 'varchar',			unique: true,			length: 50,		},	},
-})
+class Type extends Model<IType> { }
+
+Type.init({	id: {		key: 'id',		type: DataTypes.INTEGER({ length: 10 }),		primaryKey: true,		autoIncrement: true,		autoIncrementIdentity: true,	},
+	name: {		key: 'name',		type: DataTypes.STRING(50),		unique: true,	},
+}, {	sequelize, 	tableName: 'Type', 	deletedAt: true,	timestamps: true, })
+
+export default Type

@@ -1,11 +1,16 @@
-import { EntitySchema } from 'typeorm'
+import sequelize from '../sequelize'
+import { Model, DataTypes } from 'sequelize'
 
-export interface Place {	id: number	code: string	name: string	description: string	Typeid: number	photoUrl: string}
+interface IPlace {	id: number	code: string	name: string	description: string	Typeid: number	photoUrl: string}
 
-export const PlaceEntity = new EntitySchema<Place>({	name: 'Place',	tableName: 'Place',	columns: {		id: {			name: 'id',			type: 'int',			primary: true,			generated: true,		},
-		code: {			name: 'code',			type: 'varchar',			unique: true,			length: 20,		},
-		name: {			name: 'name',			type: 'varchar',			length: 255,		},
-		description: {			name: 'description',			type: 'varchar',			length: 255,		},
-		Typeid: {			name: 'Typeid',			type: 'int',		},
-		photoUrl: {			name: 'photoUrl',			type: 'varchar',			length: 255,		},	},
-})
+class Place extends Model<IPlace> { }
+
+Place.init({	id: {		key: 'id',		type: DataTypes.INTEGER({ length: 10 }),		primaryKey: true,		autoIncrement: true,		autoIncrementIdentity: true,	},
+	code: {		key: 'code',		type: DataTypes.STRING(20),		unique: true,	},
+	name: {		key: 'name',		type: DataTypes.STRING(255),	},
+	description: {		key: 'description',		type: DataTypes.STRING(255),	},
+	Typeid: {		key: 'Typeid',		type: DataTypes.INTEGER({ length: 10 }),	},
+	photoUrl: {		key: 'photoUrl',		type: DataTypes.STRING(255),	},
+}, {	sequelize, 	tableName: 'Place', 	deletedAt: true,	timestamps: true, })
+
+export default Place

@@ -1,13 +1,18 @@
-import { EntitySchema } from 'typeorm'
+import sequelize from '../sequelize'
+import { Model, DataTypes } from 'sequelize'
 
-export interface User {	id: number	uid: string	name: string	email: string	verifiedEmail: string	photoUrl: string	password: string	phoneNumber: string}
+interface IUser {	id: number	uid: string	name: string	email: string	verifiedEmail: string	photoUrl: string	password: string	phoneNumber: string}
 
-export const UserEntity = new EntitySchema<User>({	name: 'User',	tableName: 'User',	columns: {		id: {			name: 'id',			type: 'int',			primary: true,			generated: true,		},
-		uid: {			name: 'uid',			type: 'varchar',			unique: true,			length: 50,		},
-		name: {			name: 'name',			type: 'varchar',			length: 50,		},
-		email: {			name: 'email',			type: 'varchar',			unique: true,			length: 50,		},
-		verifiedEmail: {			name: 'verifiedEmail',			type: 'varchar',			unique: true,			length: 50,		},
-		photoUrl: {			name: 'photoUrl',			type: 'varchar',			length: 255,		},
-		password: {			name: 'password',			type: 'varchar',			length: 255,		},
-		phoneNumber: {			name: 'phoneNumber',			type: 'varchar',			length: 20,		},	},
-})
+class User extends Model<IUser> { }
+
+User.init({	id: {		key: 'id',		type: DataTypes.INTEGER({ length: 10 }),		primaryKey: true,		autoIncrement: true,		autoIncrementIdentity: true,	},
+	uid: {		key: 'uid',		type: DataTypes.STRING(50),		unique: true,	},
+	name: {		key: 'name',		type: DataTypes.STRING(50),	},
+	email: {		key: 'email',		type: DataTypes.STRING(50),		unique: true,	},
+	verifiedEmail: {		key: 'verifiedEmail',		type: DataTypes.STRING(50),		unique: true,	},
+	photoUrl: {		key: 'photoUrl',		type: DataTypes.STRING(255),	},
+	password: {		key: 'password',		type: DataTypes.STRING(255),	},
+	phoneNumber: {		key: 'phoneNumber',		type: DataTypes.STRING(20),	},
+}, {	sequelize, 	tableName: 'User', 	deletedAt: true,	timestamps: true, })
+
+export default User

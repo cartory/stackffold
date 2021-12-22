@@ -1,9 +1,14 @@
-import { EntitySchema } from 'typeorm'
+import sequelize from '../sequelize'
+import { Model, DataTypes } from 'sequelize'
 
-export interface User_Task {	Userid: number	Taskid: number	startDate: string	endDate: string}
+interface IUser_Task {	Userid: number	Taskid: number	startDate: string	endDate: string}
 
-export const User_TaskEntity = new EntitySchema<User_Task>({	name: 'User_Task',	tableName: 'User_Task',	columns: {		Userid: {			name: 'Userid',			type: 'int',			primary: true,		},
-		Taskid: {			name: 'Taskid',			type: 'int',			primary: true,		},
-		startDate: {			name: 'startDate',			type: 'date',		},
-		endDate: {			name: 'endDate',			type: 'date',		},	},
-})
+class User_Task extends Model<IUser_Task> { }
+
+User_Task.init({	Userid: {		key: 'Userid',		type: DataTypes.INTEGER({ length: 10 }),		primaryKey: true,	},
+	Taskid: {		key: 'Taskid',		type: DataTypes.INTEGER({ length: 10 }),		primaryKey: true,	},
+	startDate: {		key: 'startDate',		type: DataTypes.DATE,	},
+	endDate: {		key: 'endDate',		type: DataTypes.DATE,	},
+}, {	sequelize, 	tableName: 'User_Task', 	deletedAt: false,	timestamps: false, })
+
+export default User_Task

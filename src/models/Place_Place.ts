@@ -1,7 +1,12 @@
-import { EntitySchema } from 'typeorm'
+import sequelize from '../sequelize'
+import { Model, DataTypes } from 'sequelize'
 
-export interface Place_Place {	placeParent_id: number	placeChild_id: number}
+interface IPlace_Place {	placeParent_id: number	placeChild_id: number}
 
-export const Place_PlaceEntity = new EntitySchema<Place_Place>({	name: 'Place_Place',	tableName: 'Place_Place',	columns: {		placeParent_id: {			name: 'placeParent_id',			type: 'int',			primary: true,		},
-		placeChild_id: {			name: 'placeChild_id',			type: 'int',			primary: true,		},	},
-})
+class Place_Place extends Model<IPlace_Place> { }
+
+Place_Place.init({	placeParent_id: {		key: 'placeParent_id',		type: DataTypes.INTEGER({ length: 10 }),		primaryKey: true,	},
+	placeChild_id: {		key: 'placeChild_id',		type: DataTypes.INTEGER({ length: 10 }),		primaryKey: true,	},
+}, {	sequelize, 	tableName: 'Place_Place', 	deletedAt: false,	timestamps: false, })
+
+export default Place_Place
