@@ -1,9 +1,9 @@
 import sequelize from '../sequelize'
 import { Model, DataTypes } from 'sequelize'
 
-interface IUser_Task {	Userid: number	Taskid: number	startDate: string	endDate: string}
+export interface IUser_Task {	Userid: number	Taskid: number	startDate: string	endDate: string}
 
-class User_Task extends Model<IUser_Task> { }
+export class User_Task extends Model<IUser_Task> { }
 
 User_Task.init({	Userid: {		key: 'Userid',		type: DataTypes.INTEGER({ length: 10 }),		primaryKey: true,	},
 	Taskid: {		key: 'Taskid',		type: DataTypes.INTEGER({ length: 10 }),		primaryKey: true,	},
@@ -11,4 +11,3 @@ User_Task.init({	Userid: {		key: 'Userid',		type: DataTypes.INTEGER({ length:
 	endDate: {		key: 'endDate',		type: DataTypes.DATE,	},
 }, {	sequelize, 	tableName: 'User_Task', 	deletedAt: false,	timestamps: false, })
 
-export default User_Task

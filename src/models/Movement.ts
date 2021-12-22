@@ -1,9 +1,9 @@
 import sequelize from '../sequelize'
 import { Model, DataTypes } from 'sequelize'
 
-interface IMovement {	id: number	Reasonid: number	description: string	Equipmentid: number	placeFrom_id: number	placeTo_id: number}
+export interface IMovement {	id: number	Reasonid: number	description: string	Equipmentid: number	placeFrom_id: number	placeTo_id: number}
 
-class Movement extends Model<IMovement> { }
+export class Movement extends Model<IMovement> { }
 
 Movement.init({	id: {		key: 'id',		type: DataTypes.INTEGER({ length: 11 }),		primaryKey: true,		autoIncrement: true,		autoIncrementIdentity: true,	},
 	Reasonid: {		key: 'Reasonid',		type: DataTypes.INTEGER({ length: 11 }),	},
@@ -13,4 +13,3 @@ Movement.init({	id: {		key: 'id',		type: DataTypes.INTEGER({ length: 11 }),	
 	placeTo_id: {		key: 'placeTo_id',		type: DataTypes.INTEGER({ length: 10 }),	},
 }, {	sequelize, 	tableName: 'Movement', 	deletedAt: false,	timestamps: false, })
 
-export default Movement

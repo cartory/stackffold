@@ -1,9 +1,9 @@
 import sequelize from '../sequelize'
 import { Model, DataTypes } from 'sequelize'
 
-interface IEquipment {	id: number	description: string	code: string	photoUrl: string	state: string	observations: string	Unitid: number}
+export interface IEquipment {	id: number	description: string	code: string	photoUrl: string	state: string	observations: string	Unitid: number}
 
-class Equipment extends Model<IEquipment> { }
+export class Equipment extends Model<IEquipment> { }
 
 Equipment.init({	id: {		key: 'id',		type: DataTypes.INTEGER({ length: 11 }),		primaryKey: true,		autoIncrement: true,		autoIncrementIdentity: true,	},
 	description: {		key: 'description',		type: DataTypes.TEXT,	},
@@ -14,4 +14,3 @@ Equipment.init({	id: {		key: 'id',		type: DataTypes.INTEGER({ length: 11 }),
 	Unitid: {		key: 'Unitid',		type: DataTypes.INTEGER({ length: 11 }),	},
 }, {	sequelize, 	tableName: 'Equipment', 	deletedAt: true,	timestamps: true, })
 
-export default Equipment

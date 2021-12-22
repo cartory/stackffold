@@ -1,9 +1,9 @@
 import sequelize from '../sequelize'
 import { Model, DataTypes } from 'sequelize'
 
-interface IUser_Place {	Userid: number	Placeid: number	startTime: number	endTime: number	startDate: string	endDate: string}
+export interface IUser_Place {	Userid: number	Placeid: number	startTime: number	endTime: number	startDate: string	endDate: string}
 
-class User_Place extends Model<IUser_Place> { }
+export class User_Place extends Model<IUser_Place> { }
 
 User_Place.init({	Userid: {		key: 'Userid',		type: DataTypes.INTEGER({ length: 10 }),		primaryKey: true,	},
 	Placeid: {		key: 'Placeid',		type: DataTypes.INTEGER({ length: 10 }),		primaryKey: true,	},
@@ -13,4 +13,3 @@ User_Place.init({	Userid: {		key: 'Userid',		type: DataTypes.INTEGER({ length
 	endDate: {		key: 'endDate',		type: DataTypes.DATE,	},
 }, {	sequelize, 	tableName: 'User_Place', 	deletedAt: false,	timestamps: false, })
 
-export default User_Place
