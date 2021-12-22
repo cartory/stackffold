@@ -1,6 +1,6 @@
 import sequelize from "../sequelize"
 
-import User from "../models/User"
+import { User, IUser } from "../models/User"
 import mail from "./mail.service"
 
 const randomCode = (digits: number = 4): string => {
@@ -8,11 +8,20 @@ const randomCode = (digits: number = 4): string => {
 	return code.map((_) => Math.floor(Math.random() * 10)).join("")
 }
 
-export const checkVerificationCode = (user: User, verificationCode: string) => {
-	return user._attributes.verifiedCode == verificationCode
+const checkVerificationCode = async (user: User, verificationCode: string) => {
+	try {
+		if (user._attributes.verifiedCode == verificationCode) {
+			await user.update({ isVerified: true })
+			return true
+		}
+	} catch (err) {
+		console.error(err)
+	}
+	
+	return false
 }
 
-export const sendVerificationMail = async (user: User) => {
+const sendVerificationMail = async (user: User): Promise<string> => {
 	const { isVerified, verifiedEmail } = user._attributes
 
 	if (isVerified) {
@@ -43,5 +52,11 @@ export const sendVerificationMail = async (user: User) => {
 	} catch (err) {
 		console.error(err)
 		await t.rollback()
+		return err.message
 	}
+}
+
+export default {
+	sendVerificationMail,
+	checkVerificationCode,
 }
