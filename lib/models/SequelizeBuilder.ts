@@ -45,9 +45,9 @@ export class SequelizeBuilder extends TableBuilder {
 			"" +
 			"import sequelize from '../sequelize'\r\n" +
 			"import { Model, DataTypes } from 'sequelize'\r\n\n" +
-			`interface I${name} {\r` +
+			`export interface I${name} {\r` +
 			`${columns.map(({ name, type }) => `\t${name}: ${getDataType(type)}`).join("\r")}\r}\r\n\n` +
-			`class ${name} extends Model<I${name}> { }\r\n\n` +
+			`export class ${name} extends Model<I${name}> { }\r\n\n` +
 			`${name}.init({\r` +
 			`${columns
 				.map((column) => {
@@ -69,8 +69,7 @@ export class SequelizeBuilder extends TableBuilder {
 				.join("\r\n")}\n` +
 			`}, {\r\tsequelize, \r\ttableName: '${name}', \r\t` +
 			`deletedAt: ${dataModel === "Physical"},\r\t` +
-			`timestamps: ${dataModel === "Physical"}, \r})\n\n` +
-			`export default ${name}`
+			`timestamps: ${dataModel === "Physical"}, \r})\n\n` 
 
 		this.writeFile(`src/models/${name}.ts`, data)
 	}
@@ -82,7 +81,7 @@ export class SequelizeBuilder extends TableBuilder {
 			"" +
 			"import { Response } from 'express'\n" +
 			"import { Response as Res, Get, Post, Delete, Body, Params, Controller } from '@decorators/express'" +
-			`\r\n\nimport ${name} from '../models/${name}'\r\n\n` +
+			`\r\n\nimport { ${name}, I${name} } from '../models/${name}'\r\n\n` +
 			`@Controller('/${lowerName}s')\r` +
 			`export class ${name}Controller {\n` +
 			// findAll
@@ -92,8 +91,8 @@ export class SequelizeBuilder extends TableBuilder {
 			`\t@Get('/:id')\r\tasync findOne(@Params('id') id: number, @Res() res: Response<${name}>): Promise<Response<${name}>> {\r` +
 			`${buildMethod(`res.status(200).json(await ${name}.findOne({ where: { id } }))`)}\n\t}\r\n\n` +
 			// save
-			`\t@Post('/')\r\tasync save(@Body() ${lowerName}: ${name}, @Res() res: Response<${name}>): Promise<Response<${name}>> {\r` +
-			`${buildMethod(`res.status(201).json((await ${name}.upsert(${lowerName}.toJSON()))[0])`)}\n\t}\r\n\n` +
+			`\t@Post('/')\r\tasync save(@Body() ${lowerName}: I${name}, @Res() res: Response<${name}>): Promise<Response<${name}>> {\r` +
+			`${buildMethod(`res.status(201).json((await ${name}.upsert(${lowerName}))[0])`)}\n\t}\r\n\n` +
 			// delete
 			`\t@Delete('/:id')\r\tasync destroy(@Params('id') id: number, @Res() res: Response): Promise<Response> {\r` +
 			`${buildMethod(`res.status(202).send(await ${name}.destroy({ where: { id } }))`)}\n\t}\r\n}`
