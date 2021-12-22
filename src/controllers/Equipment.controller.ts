@@ -1,7 +1,7 @@
 import { Response } from 'express'
 import { Response as Res, Get, Post, Delete, Body, Params, Controller } from '@decorators/express'
 
-import Equipment from '../models/Equipment'
+import { Equipment, IEquipment } from '../models/Equipment'
 
 @Controller('/equipments')export class EquipmentController {
 	@Get('/')	async findAll(@Res() res: Response<Equipment[]>): Promise<Response<Equipment[]>> {		try {
@@ -20,8 +20,8 @@ import Equipment from '../models/Equipment'
 		return res.status(500).send(null)
 	}
 
-	@Post('/')	async save(@Body() equipment: Equipment, @Res() res: Response<Equipment>): Promise<Response<Equipment>> {		try {
-			return res.status(201).json((await Equipment.upsert(equipment.toJSON()))[0])
+	@Post('/')	async save(@Body() equipment: IEquipment, @Res() res: Response<Equipment>): Promise<Response<Equipment>> {		try {
+			return res.status(201).json((await Equipment.upsert(equipment))[0])
 		} catch (err) {
 			console.error(err)
 		}

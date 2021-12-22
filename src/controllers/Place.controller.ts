@@ -1,7 +1,7 @@
 import { Response } from 'express'
 import { Response as Res, Get, Post, Delete, Body, Params, Controller } from '@decorators/express'
 
-import Place from '../models/Place'
+import { Place, IPlace } from '../models/Place'
 
 @Controller('/places')export class PlaceController {
 	@Get('/')	async findAll(@Res() res: Response<Place[]>): Promise<Response<Place[]>> {		try {
@@ -20,8 +20,8 @@ import Place from '../models/Place'
 		return res.status(500).send(null)
 	}
 
-	@Post('/')	async save(@Body() place: Place, @Res() res: Response<Place>): Promise<Response<Place>> {		try {
-			return res.status(201).json((await Place.upsert(place.toJSON()))[0])
+	@Post('/')	async save(@Body() place: IPlace, @Res() res: Response<Place>): Promise<Response<Place>> {		try {
+			return res.status(201).json((await Place.upsert(place))[0])
 		} catch (err) {
 			console.error(err)
 		}

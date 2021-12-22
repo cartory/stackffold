@@ -1,7 +1,7 @@
 import { Response } from 'express'
 import { Response as Res, Get, Post, Delete, Body, Params, Controller } from '@decorators/express'
 
-import Unit from '../models/Unit'
+import { Unit, IUnit } from '../models/Unit'
 
 @Controller('/units')export class UnitController {
 	@Get('/')	async findAll(@Res() res: Response<Unit[]>): Promise<Response<Unit[]>> {		try {
@@ -20,8 +20,8 @@ import Unit from '../models/Unit'
 		return res.status(500).send(null)
 	}
 
-	@Post('/')	async save(@Body() unit: Unit, @Res() res: Response<Unit>): Promise<Response<Unit>> {		try {
-			return res.status(201).json((await Unit.upsert(unit.toJSON()))[0])
+	@Post('/')	async save(@Body() unit: IUnit, @Res() res: Response<Unit>): Promise<Response<Unit>> {		try {
+			return res.status(201).json((await Unit.upsert(unit))[0])
 		} catch (err) {
 			console.error(err)
 		}

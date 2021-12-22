@@ -1,7 +1,7 @@
 import { Response } from 'express'
 import { Response as Res, Get, Post, Delete, Body, Params, Controller } from '@decorators/express'
 
-import Task from '../models/Task'
+import { Task, ITask } from '../models/Task'
 
 @Controller('/tasks')export class TaskController {
 	@Get('/')	async findAll(@Res() res: Response<Task[]>): Promise<Response<Task[]>> {		try {
@@ -20,8 +20,8 @@ import Task from '../models/Task'
 		return res.status(500).send(null)
 	}
 
-	@Post('/')	async save(@Body() task: Task, @Res() res: Response<Task>): Promise<Response<Task>> {		try {
-			return res.status(201).json((await Task.upsert(task.toJSON()))[0])
+	@Post('/')	async save(@Body() task: ITask, @Res() res: Response<Task>): Promise<Response<Task>> {		try {
+			return res.status(201).json((await Task.upsert(task))[0])
 		} catch (err) {
 			console.error(err)
 		}

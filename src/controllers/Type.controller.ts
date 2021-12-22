@@ -1,7 +1,7 @@
 import { Response } from 'express'
 import { Response as Res, Get, Post, Delete, Body, Params, Controller } from '@decorators/express'
 
-import Type from '../models/Type'
+import { Type, IType } from '../models/Type'
 
 @Controller('/types')export class TypeController {
 	@Get('/')	async findAll(@Res() res: Response<Type[]>): Promise<Response<Type[]>> {		try {
@@ -20,8 +20,8 @@ import Type from '../models/Type'
 		return res.status(500).send(null)
 	}
 
-	@Post('/')	async save(@Body() type: Type, @Res() res: Response<Type>): Promise<Response<Type>> {		try {
-			return res.status(201).json((await Type.upsert(type.toJSON()))[0])
+	@Post('/')	async save(@Body() type: IType, @Res() res: Response<Type>): Promise<Response<Type>> {		try {
+			return res.status(201).json((await Type.upsert(type))[0])
 		} catch (err) {
 			console.error(err)
 		}
