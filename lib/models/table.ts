@@ -1,10 +1,10 @@
-import fs from 'fs'
+import fs from "fs"
 
 export interface Table {
 	id: string
 	name: string
 	dataModel: string
-	
+
 	marked: boolean
 	columns: Column[]
 }
@@ -14,7 +14,7 @@ export interface Column {
 	name: string
 	type: string
 	generated?: string
-	
+
 	default?: any
 	length?: number
 
@@ -25,7 +25,7 @@ export interface Column {
 	references?: Reference
 }
 
-export interface Reference { 
+export interface Reference {
 	id: string
 	tableName: string
 	columnName: string
@@ -33,18 +33,16 @@ export interface Reference {
 }
 
 export abstract class TableBuilder {
-	protected path: string
-	protected data: string
 	protected tableNames: string[] = []
 
-	public buildTable(table: Table): void { 
+	public buildTable(table: Table): void {
 		this.buildModel(table)
-		if (table.dataModel == 'Physical') { 
+		if (table.dataModel == "Physical") {
 			this.buildController(table)
 			this.tableNames.push(table.name)
 		}
-		
-		console.log(`${table.name} => GENERATED`);
+
+		console.log(`${table.name} => GENERATED`)
 	}
 
 	public buildServer(): void {
@@ -52,27 +50,28 @@ export abstract class TableBuilder {
 		this.buildRoutes()
 	}
 
-	protected writeFile(): void {
-		fs.writeFile(this.path, this.data, {
-			encoding: 'utf-8'
-		}, err => err && console.error(err))
+	protected writeFile(path: string, data: string): void {
+		fs.writeFileSync(path, data, {
+			encoding: "utf-8",
+		})
 	}
 
 	protected buildRoutes(): void {
 		this.tableNames.sort((a, b) => a.length - b.length)
 
-		this.data = (''
-			+ "import { Router } from 'express'\n"
-			+ "import { attachControllers } from '@decorators/express'\n\n"
-			+ `${this.tableNames.map(name => {
-				return `import { ${name}Controller } from './controllers/${name}Controller'`
-			}).join('\n')}\n\nconst router = Router()\n\n`
-			+ `attachControllers(router, [\n${this.tableNames.map(name => `\t${name}Controller,`).join('\n')}\n])\n\n`
-			+ 'export default router'
-		)
-
-		this.path = 'src/router.ts'
-		this.writeFile()
+		const data =
+			"" +
+			"import { Router } from 'express'\n" +
+			"import { attachControllers } from '@decorators/express'\n\n" +
+			`${this.tableNames
+				.map((name) => {
+					return `import { ${name}Controller } from './controllers/${name}Controller'`
+				})
+				.join("\n")}\n\nconst router = Router()\n\n` +
+			`attachControllers(router, [\n${this.tableNames.map((name) => `\t${name}Controller,`).join("\n")}\n])\n\n` +
+			"export default router"
+		//
+		this.writeFile("src/router.ts", data)
 	}
 
 	protected abstract buildIndex(): void
