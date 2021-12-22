@@ -21,9 +21,13 @@ export const sendMail = async (mailOptions: SendMailOptions): Promise<boolean> =
 		})
 
 		console.table([messageInfo])
-        return true
+		return true
 	} catch (err) {
 		console.error(err)
 	}
 	return false
+}
+
+export default {
+	sendMail,
 }
