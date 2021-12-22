@@ -99,7 +99,7 @@ export class SequelizeBuilder extends TableBuilder {
 			`${buildMethod(`res.status(202).send(await ${name}.destroy({ where: { id } }))`)}\n\t}\r\n}`
 
 		// this.path = `src/controllers/${name}Controller.ts`;
-		this.writeFile(`src/controllers/${name}Controller.ts`, data)
+		this.writeFile(`src/controllers/${name}.controller.ts`, data)
 	}
 
 	buildConnection(): void {
