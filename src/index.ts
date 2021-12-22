@@ -1,35 +1,34 @@
-import cors from 'cors'
-import dotenv from 'dotenv'
-import express from 'express'
+import cors from "cors"
+import express from "express"
 
-import { createConnection } from 'typeorm'
+import apiRouter from "./router"
+import sequelize from "./sequelize"
 
-dotenv.config()
 const app = express()
 
-const main = async (server: express.Express): Promise<void> => {
-	process.env.NODE_ENV == 'development' && server.use(require('morgan')('dev'))
-
-	await createConnection({
-		type: 'mysql',
-		url: process.env.DATABASE_URL,
-		entities: [ 'src/models/*.ts' ],
+// DB CONNECTION
+sequelize
+	.authenticate()
+	.then(async () => {
+		// await sequelize.sync({ logging: false, alter: true })
+		console.log(`\x1b[32mDB Connected Sucessfully!\x1b[0m`)
 	})
-
-	server.use('/api', (await import('./router')).default)
-	server.listen(process.env.PORT || 80, () => {
-		console.log('[32mDB Connected Sucessfully![0m')
-		console.log(`Server running on [33mhttp://${process.env.HOST}:${process.env.PORT}[0m`)
+	.catch((err) => {
+		console.error(err)
+		process.exit(0)
 	})
-}
 
 app
+	// SETUP
 	.use(cors())
 	.use(express.urlencoded({ extended: true }))
 	.use(express.json({ limit: process.env.BODY_SIZE }))
 	// ROUTES
-	.get('/', (_, res) => res.send('<h1>Welcome to Generated API 👋 </h1>'))
+	.use("/api", apiRouter)
+	.get("/", (_, res) => res.send("<h1>Welcome to Generated API 👋 </h1>"))
 
-main(app)
-	.then(() => console.log(new Date()))
-	.catch(err => console.error(err))
+app.listen(process.env.PORT || 3000, () => {
+	process.env.NODE_ENV === "development" && app.use(require('morgan')('dev'))
+	console.log(`Server running on \x1b[33mhttp://${process.env.HOST}:${process.env.PORT}\x1b[0m`)
+	console.log(new Date())
+})
