@@ -65,7 +65,7 @@ export abstract class TableBuilder {
 			"import { attachControllers } from '@decorators/express'\n\n" +
 			`${this.tableNames
 				.map((name) => {
-					return `import { ${name}Controller } from './controllers/${name}Controller'`
+					return `import { ${name}Controller } from './controllers/${name}.controller'`
 				})
 				.join("\n")}\n\nconst router = Router()\n\n` +
 			`attachControllers(router, [\n${this.tableNames.map((name) => `\t${name}Controller,`).join("\n")}\n])\n\n` +
