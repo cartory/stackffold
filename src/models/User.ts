@@ -1,7 +1,7 @@
 import sequelize from "../sequelize"
 import { Model, DataTypes } from "sequelize"
 
-interface IUser {
+export interface IUser {
 	id: number
 	uid: string
 	name: string
@@ -14,7 +14,7 @@ interface IUser {
 	isVerified: boolean
 }
 
-class User extends Model<IUser> {}
+export class User extends Model<IUser> {}
 
 User.init(
 	{
@@ -74,5 +74,3 @@ User.init(
 		timestamps: true,
 	}
 )
-
-export default User
