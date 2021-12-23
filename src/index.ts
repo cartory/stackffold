@@ -2,7 +2,7 @@ import cors from "cors"
 import express from "express"
 
 import apiRouter from "./router"
-import sequelize from "./sequelize"
+import sequelize from "./utils/sequelize"
 
 const app = express()
 
