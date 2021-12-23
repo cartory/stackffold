@@ -2,6 +2,7 @@ import { getDataType, getDataSequelizetype } from "../utils/constants"
 import { Column, Table, TableBuilder } from "./table"
 
 const getSequelizeColumn = (column: Column) => {
+	const { references } = column
 	return {
 		key: column.name,
 		type: getDataSequelizetype[column.type](column.length),
@@ -10,6 +11,7 @@ const getSequelizeColumn = (column: Column) => {
 		primaryKey: column.primary,
 		autoIncrement: column.generated === "increment",
 		autoIncrementIdentity: column.generated === "increment",
+		references: references != null && `{ key: '${references.columnName}', model: '${references.tableName}' }`,
 	}
 }
 
@@ -54,13 +56,10 @@ export class SequelizeBuilder extends TableBuilder {
 					let rawColumnOptions = ""
 					let jsonColumn = getSequelizeColumn(column)
 
-					delete jsonColumn["id"]
-					delete jsonColumn["references"]
-
 					for (const key in jsonColumn) {
 						let value = jsonColumn[key]
 						if (!jsonColumn[key]) continue
-						value = typeof jsonColumn[key] == "string" && key !== "type" ? `'${value}'` : value
+						value = typeof jsonColumn[key] == "string" && key !== "type" && key !== "references" ? `'${value}'` : value
 						rawColumnOptions += `\t\t${key}: ${value},\r`
 					}
 
