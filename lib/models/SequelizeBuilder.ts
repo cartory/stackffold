@@ -69,7 +69,7 @@ export class SequelizeBuilder extends TableBuilder {
 				.join("\r\n")}\n` +
 			`}, {\r\tsequelize, \r\ttableName: '${name}', \r\t` +
 			`deletedAt: ${dataModel === "Physical"},\r\t` +
-			`timestamps: ${dataModel === "Physical"}, \r})\n\n` 
+			`timestamps: ${dataModel === "Physical"}, \r})\n\n`
 
 		this.writeFile(`src/models/${name}.ts`, data)
 	}
@@ -81,7 +81,8 @@ export class SequelizeBuilder extends TableBuilder {
 			"" +
 			"import { Response } from 'express'\n" +
 			"import { Response as Res, Get, Post, Delete, Body, Params, Controller } from '@decorators/express'" +
-			`\r\n\nimport { ${name}, I${name} } from '../models/${name}'\r\n\n` +
+			`\r\n\nimport { I${name} } from '../models/${name}'\r\n` +
+			`import { ${name} } from '../utils/models'\r\n\n` +
 			`@Controller('/${lowerName}s')\r` +
 			`export class ${name}Controller {\n` +
 			// findAll
@@ -104,5 +105,13 @@ export class SequelizeBuilder extends TableBuilder {
 	buildConnection(): void {
 		const data = `import { config } from "dotenv"\nimport { Sequelize } from "sequelize"\n\nconfig()\nexport default new Sequelize(process.env.DATABASE_URL, {\n\t// logging: false,\n\tdefine: {\n\t\tparanoid: true,\n\t\tdefaultScope: {\n\t\t\tattributes: {\n\t\t\t\texclude: ["createdAt", "updatedAt", "deletedAt"],\n\t\t\t},\n\t\t},\n\t},\n\tpool: {\n\t\tidle: 10000,\n\t\tacquire: 3600000,\n\t},\n})\n`
 		this.writeFile("src/sequelize.ts", data)
+	}
+
+	addModelRelationships(tables: Table[]): void {
+		const models: string[] = tables.map(({ name }) => name).sort((a, b) => a.length - b.length)
+
+		const rawModelsFile: string = "" + `${models.map((model) => `import { ${model} } from '../models/${model}'\r`).join("")}\r` + `export { ${models.map((model) => `\r\t${model},`).join("")}\r}`
+
+		this.writeFile("src/utils/models.ts", rawModelsFile)
 	}
 }
