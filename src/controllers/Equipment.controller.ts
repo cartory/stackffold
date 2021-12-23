@@ -1,9 +1,11 @@
 import { Response } from "express"
 import { Response as Res, Get, Post, Delete, Body, Params, Controller, Query } from "@decorators/express"
 
+import { IMovement } from "src/models/Movement"
 import { IEquipment } from "../models/Equipment"
-import { Equipment, Movement, Place } from "../utils/models"
 
+import { Equipment, Movement, Place } from "../utils/models"
+import movementService from "../services/movement.service"
 @Controller("/equipments")
 export class EquipmentController {
 	@Get("/")
@@ -87,6 +89,18 @@ export class EquipmentController {
 			console.error(err)
 		}
 		return res.status(500).send(null)
+	}
+
+	@Post("/movement")
+	async makeMovement(@Body() body, @Res() res: Response<boolean>): Promise<Response<boolean>> {
+		const { movement, equipmentIDs = [] } = body
+		try {
+			const result = await movementService.makeTransaction(movement as IMovement, equipmentIDs as number[])
+			return res.status(201).send(result)
+		} catch (err) {
+			console.error(err)
+		}
+		return res.status(500).send(false)
 	}
 
 	@Post("/")
