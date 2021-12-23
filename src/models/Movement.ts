@@ -7,9 +7,9 @@ export class Movement extends Model<IMovement> { }
 
 Movement.init({	id: {		key: 'id',		type: DataTypes.INTEGER({ length: 11 }),		primaryKey: true,		autoIncrement: true,		autoIncrementIdentity: true,	},
 	Reasonid: {		key: 'Reasonid',		type: DataTypes.INTEGER({ length: 11 }),	},
-	description: {		key: 'description',		type: DataTypes.TEXT,	},
+	description: {		key: 'description',		type: DataTypes.TEXT,		allowNull: true,	},
 	Equipmentid: {		key: 'Equipmentid',		type: DataTypes.INTEGER({ length: 11 }),	},
-	placeFrom_id: {		key: 'placeFrom_id',		type: DataTypes.INTEGER({ length: 10 }),	},
-	placeTo_id: {		key: 'placeTo_id',		type: DataTypes.INTEGER({ length: 10 }),	},
+	placeFrom_id: {		key: 'placeFrom_id',		type: DataTypes.INTEGER({ length: 10 }),		allowNull: true,	},
+	placeTo_id: {		key: 'placeTo_id',		type: DataTypes.INTEGER({ length: 10 }),		allowNull: true,	},
 }, {	sequelize, 	tableName: 'Movement', 	deletedAt: false,	timestamps: false, })
 
