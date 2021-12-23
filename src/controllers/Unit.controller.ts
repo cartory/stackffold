@@ -1,7 +1,8 @@
 import { Response } from 'express'
 import { Response as Res, Get, Post, Delete, Body, Params, Controller } from '@decorators/express'
 
-import { Unit, IUnit } from '../models/Unit'
+import { IUnit } from '../models/Unit'
+import { Unit } from '../utils/models'
 
 @Controller('/units')export class UnitController {
 	@Get('/')	async findAll(@Res() res: Response<Unit[]>): Promise<Response<Unit[]>> {		try {

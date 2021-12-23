@@ -1,7 +1,8 @@
 import { Response } from 'express'
 import { Response as Res, Get, Post, Delete, Body, Params, Controller } from '@decorators/express'
 
-import { Reason, IReason } from '../models/Reason'
+import { IReason } from '../models/Reason'
+import { Reason } from '../utils/models'
 
 @Controller('/reasons')export class ReasonController {
 	@Get('/')	async findAll(@Res() res: Response<Reason[]>): Promise<Response<Reason[]>> {		try {

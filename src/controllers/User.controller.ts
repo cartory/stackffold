@@ -1,7 +1,9 @@
 import { Response } from "express"
 import { Response as Res, Get, Post, Delete, Body, Params, Controller, Query } from "@decorators/express"
 
-import { User, IUser } from "../models/User"
+import { User } from "../utils/models"
+import { IUser } from "../models/User"
+
 import auth from "../services/auth.service"
 
 @Controller("/users")

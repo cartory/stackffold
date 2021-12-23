@@ -1,7 +1,8 @@
 import { Response } from 'express'
 import { Response as Res, Get, Post, Delete, Body, Params, Controller } from '@decorators/express'
 
-import { Type, IType } from '../models/Type'
+import { IType } from '../models/Type'
+import { Type } from '../utils/models'
 
 @Controller('/types')export class TypeController {
 	@Get('/')	async findAll(@Res() res: Response<Type[]>): Promise<Response<Type[]>> {		try {

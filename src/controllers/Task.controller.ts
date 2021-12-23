@@ -1,7 +1,8 @@
 import { Response } from 'express'
 import { Response as Res, Get, Post, Delete, Body, Params, Controller } from '@decorators/express'
 
-import { Task, ITask } from '../models/Task'
+import { ITask } from '../models/Task'
+import { Task } from '../utils/models'
 
 @Controller('/tasks')export class TaskController {
 	@Get('/')	async findAll(@Res() res: Response<Task[]>): Promise<Response<Task[]>> {		try {

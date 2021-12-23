@@ -1,7 +1,8 @@
 import { Response } from 'express'
 import { Response as Res, Get, Post, Delete, Body, Params, Controller } from '@decorators/express'
 
-import { Place, IPlace } from '../models/Place'
+import { IPlace } from '../models/Place'
+import { Place } from '../utils/models'
 
 @Controller('/places')export class PlaceController {
 	@Get('/')	async findAll(@Res() res: Response<Place[]>): Promise<Response<Place[]>> {		try {
