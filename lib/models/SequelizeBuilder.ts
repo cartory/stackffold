@@ -43,7 +43,7 @@ export class SequelizeBuilder extends TableBuilder {
 	protected buildModel({ name, columns, dataModel }: Table): void {
 		const data =
 			"" +
-			"import sequelize from '../sequelize'\r\n" +
+			"import sequelize from '../utils/sequelize'\r\n" +
 			"import { Model, DataTypes } from 'sequelize'\r\n\n" +
 			`export interface I${name} {\r` +
 			`${columns.map(({ name, type }) => `\t${name}: ${getDataType(type)}`).join("\r")}\r}\r\n\n` +
@@ -104,7 +104,7 @@ export class SequelizeBuilder extends TableBuilder {
 
 	buildConnection(): void {
 		const data = `import { config } from "dotenv"\nimport { Sequelize } from "sequelize"\n\nconfig()\nexport default new Sequelize(process.env.DATABASE_URL, {\n\t// logging: false,\n\tdefine: {\n\t\tparanoid: true,\n\t\tdefaultScope: {\n\t\t\tattributes: {\n\t\t\t\texclude: ["createdAt", "updatedAt", "deletedAt"],\n\t\t\t},\n\t\t},\n\t},\n\tpool: {\n\t\tidle: 10000,\n\t\tacquire: 3600000,\n\t},\n})\n`
-		this.writeFile("src/sequelize.ts", data)
+		this.writeFile("src/utils/sequelize.ts", data)
 	}
 
 	addModelRelationships(tables: Table[]): void {
