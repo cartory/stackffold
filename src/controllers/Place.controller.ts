@@ -10,13 +10,13 @@ export class PlaceController {
 	async findAll(@Query() query, @Res() res: Response<Place[]>): Promise<Response<Place[]>> {
 		const { page = 0, limit = 10 } = query
 		try {
-			const type = await Type.findOne({ order: [["id", "ASC"]] })
-
+			const type = await Type.findOne()
+			
 			const places = await Place.findAll({
 				offset: page * limit,
 				limit: Number.parseInt(limit),
 				where: {
-					Typeid: type?._attributes.id,
+					Typeid: type && type.getDataValue('id')
 				},
 				include: [
 					{ model: Type, as: "type" },
@@ -33,7 +33,7 @@ export class PlaceController {
 				],
 			})
 
-			return res.status(200).json(await Place.findAll())
+			return res.status(200).json(places)
 		} catch (err) {
 			console.error(err)
 		}
