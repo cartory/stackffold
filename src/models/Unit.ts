@@ -1,4 +1,4 @@
-import sequelize from '../sequelize'
+import sequelize from '../utils/sequelize'
 import { Model, DataTypes } from 'sequelize'
 
 export interface IUnit {	id: number	name: string}

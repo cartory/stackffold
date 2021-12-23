@@ -1,4 +1,4 @@
-import sequelize from '../sequelize'
+import sequelize from '../utils/sequelize'
 import { Model, DataTypes } from 'sequelize'
 
 export interface IEquipment {	id: number	description: string	code: string	photoUrl: string	state: string	observations: string	Unitid: number}

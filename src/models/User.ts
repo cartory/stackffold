@@ -1,4 +1,4 @@
-import sequelize from '../sequelize'
+import sequelize from '../utils/sequelize'
 import { Model, DataTypes } from 'sequelize'
 
 export interface IUser {	id: number	uid: string	name: string	email: string	verifiedEmail: string	photoUrl: string	password: string	phoneNumber: string	verifiedCode: string	isVerified: boolean}

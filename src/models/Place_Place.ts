@@ -1,4 +1,4 @@
-import sequelize from '../sequelize'
+import sequelize from '../utils/sequelize'
 import { Model, DataTypes } from 'sequelize'
 
 export interface IPlace_Place {	placeParent_id: number	placeChild_id: number}

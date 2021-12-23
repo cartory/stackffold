@@ -1,4 +1,4 @@
-import sequelize from '../sequelize'
+import sequelize from '../utils/sequelize'
 import { Model, DataTypes } from 'sequelize'
 
 export interface IUser_Place {	Userid: number	Placeid: number	startTime: number	endTime: number	startDate: string	endDate: string}
