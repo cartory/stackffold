@@ -1,7 +1,9 @@
 # directories
 /node_modules
-/assets/vpp
 
+/.adminjs
+/assets/vpp
+/seeders
 #files
 .env
 cris.json
