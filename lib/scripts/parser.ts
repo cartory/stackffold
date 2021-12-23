@@ -37,7 +37,7 @@ let tables: Table[] = getDBTable(vpp.Project).map(table => {
 			
 				unique: column.Unique,
 				length: column.Length,
-				nullable: column.nullable,
+				nullable: column.Nullable,
 				primary: column.PrimaryKey,
 				default: column.DefaultValue,
 				generated: column.IdGenerator,
