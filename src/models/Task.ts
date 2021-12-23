@@ -10,7 +10,7 @@ Task.init({	id: {		key: 'id',		type: DataTypes.INTEGER({ length: 10 }),		pri
 	description: {		key: 'description',		type: DataTypes.STRING(255),		allowNull: true,	},
 	deadLine: {		key: 'deadLine',		type: DataTypes.DATE,	},
 	status: {		key: 'status',		type: DataTypes.BOOLEAN,	},
-	Placeid: {		key: 'Placeid',		type: DataTypes.INTEGER({ length: 10 }),		allowNull: true,	},
+	Placeid: {		key: 'Placeid',		type: DataTypes.INTEGER({ length: 10 }),		allowNull: true,		references: { key: 'id', model: 'Place' },	},
 	photoUrl: {		key: 'photoUrl',		type: DataTypes.STRING(255),		allowNull: true,	},
 }, {	sequelize, 	tableName: 'Task', 	deletedAt: true,	timestamps: true, })
 

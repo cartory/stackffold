@@ -9,7 +9,7 @@ Place.init({	id: {		key: 'id',		type: DataTypes.INTEGER({ length: 10 }),		pr
 	code: {		key: 'code',		type: DataTypes.STRING(20),		unique: true,	},
 	name: {		key: 'name',		type: DataTypes.STRING(255),	},
 	description: {		key: 'description',		type: DataTypes.STRING(255),		allowNull: true,	},
-	Typeid: {		key: 'Typeid',		type: DataTypes.INTEGER({ length: 10 }),	},
+	Typeid: {		key: 'Typeid',		type: DataTypes.INTEGER({ length: 10 }),		references: { key: 'id', model: 'Type' },	},
 	photoUrl: {		key: 'photoUrl',		type: DataTypes.STRING(255),		allowNull: true,	},
 }, {	sequelize, 	tableName: 'Place', 	deletedAt: true,	timestamps: true, })
 
