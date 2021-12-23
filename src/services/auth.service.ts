@@ -1,7 +1,7 @@
-import sequelize from "../sequelize"
-
-import { User, IUser } from "../models/User"
 import mail from "./mail.service"
+
+import { User } from "../utils/models"
+import sequelize from "../utils/sequelize"
 
 const randomCode = (digits: number = 4): string => {
 	const code = Array(digits).fill(0)
