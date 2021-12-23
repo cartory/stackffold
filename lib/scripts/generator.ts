@@ -32,6 +32,15 @@ const generateFiles = (tables: Table[], builder: TableBuilder) => {
 let builder = new SequelizeBuilder()
 generateFiles(database, builder)
 
-builder.constructor.name === "SequelizeBuilder" && builder.buildConnection()
+const buildProject = {
+	SequelizeBuilder: (builder: SequelizeBuilder) => {
+		builder.buildConnection()
+		builder.addModelRelationships(database)
+		builder.buildServer()
+	},
+	TypeOrmBuilder: (builder: TypeOrmBuilder) => {
+		builder.buildServer()
+	},
+}
 
-builder.buildServer()
+buildProject[builder.constructor.name](builder)
