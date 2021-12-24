@@ -15,15 +15,10 @@ export class EquipmentController {
 			const equipments = await Equipment.findAll({
 				offset: page * limit,
 				limit: Number.parseInt(limit),
+				where: placeId && { Placeid: placeId },
 				include: [
 					"unit",
-					{
-						model: Place,
-						as: "places",
-						include: ["type"],
-						where: placeId && { id: placeId },
-						through: { attributes: [] },
-					},
+					"place",
 					{
 						model: Movement,
 						as: "movements",
@@ -58,12 +53,7 @@ export class EquipmentController {
 				where: { id },
 				include: [
 					"unit",
-					{
-						model: Place,
-						as: "places",
-						include: ["type"],
-						through: { attributes: [] },
-					},
+					"place",
 					{
 						model: Movement,
 						as: "movements",
