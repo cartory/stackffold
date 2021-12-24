@@ -29,6 +29,7 @@ export const getDataType = (name: string): string => {
 export const getDataSequelizetype = {
 	int4: (_: any) => `DataTypes.TINYINT`,
 	byte: (_: any) => `DataTypes.TINYINT`,
+	tinyint: (_:any) => `DataTypes.TINYNIT`,
 
 	bit: (_: any) => `DataTypes.BOOLEAN`,
 	boolean: (_: any) => `DataTypes.BOOLEAN`,
