@@ -2,9 +2,8 @@ import { config } from "dotenv"
 import { Sequelize } from "sequelize"
 
 config()
-
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-	logging: false,
+export default new Sequelize(process.env.DATABASE_URL, {
+	// logging: false,
 	define: {
 		paranoid: true,
 		defaultScope: {
@@ -18,5 +17,3 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
 		acquire: 3600000,
 	},
 })
-
-export default sequelize
