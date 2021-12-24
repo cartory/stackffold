@@ -4,11 +4,15 @@ import { Type } from '../models/Type'
 import { Unit } from '../models/Unit'
 import { Place } from '../models/Place'
 import { Reason } from '../models/Reason'
+import { Career } from '../models/Career'
+import { Subject } from '../models/Subject'
 import { Movement } from '../models/Movement'
+import { JobTitle } from '../models/JobTitle'
 import { User_Task } from '../models/User_Task'
 import { Equipment } from '../models/Equipment'
 import { User_Place } from '../models/User_Place'
 import { Place_Place } from '../models/Place_Place'
+import { Requirement } from '../models/Requirement'
 
 // PLACE
 Place.belongsToMany(Place, { through: Place_Place, foreignKey: 'placeChild_id', as: 'supPlaces' })
@@ -57,9 +61,13 @@ export {
 	Unit,
 	Place,
 	Reason,
+	Career,
+	Subject,
 	Movement,
+	JobTitle,
 	User_Task,
 	Equipment,
 	User_Place,
 	Place_Place,
+	Requirement,
 }
