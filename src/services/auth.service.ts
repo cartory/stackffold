@@ -17,7 +17,7 @@ const checkVerificationCode = async (user: User, verificationCode: string) => {
 	} catch (err) {
 		console.error(err)
 	}
-	
+
 	return false
 }
 
@@ -32,26 +32,24 @@ const sendVerificationMail = async (user: User): Promise<string> => {
 		return "verificationEmail Not Found"
 	}
 
-	const t = await sequelize.transaction()
 	const verifiedCode = randomCode()
 
 	try {
-		const [isSent, _] = await Promise.all([
-			//
-			await mail.sendMail({ to: verifiedEmail }),
-			await user.update({ verifiedCode: verifiedCode, isVerified: false }, { transaction: t }),
-		])
+		const [isSent, _] = await sequelize.transaction((t) => {
+			return Promise.all([
+				//
+				mail.sendMail({ to: verifiedEmail }),
+				user.update({ verifiedCode: verifiedCode, isVerified: false }, { transaction: t }),
+			])
+		})
 
 		if (!isSent) {
-			await t.rollback()
 			return "mail Not Sent"
 		}
 
-		await t.commit()
 		return "mail Sent"
 	} catch (err) {
 		console.error(err)
-		await t.rollback()
 		return err.message
 	}
 }
