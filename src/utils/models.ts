@@ -14,8 +14,8 @@ import { Place_Place } from '../models/Place_Place'
 Place.belongsToMany(Place, { through: Place_Place, foreignKey: 'placeChild_id', as: 'supPlaces' })
 Place.belongsToMany(Place, { through: Place_Place, foreignKey: 'placeParent_id', as: 'places' })
 
-Place.belongsToMany(Equipment, { through: Movement, foreignKey: 'placeTo_id', as: 'equipments' })
-Equipment.belongsToMany(Place, { through: Movement, foreignKey: 'Equipmentid', as: 'places' })
+Place.hasMany(Equipment, { foreignKey: 'Placeid',as: 'equipments' })
+Equipment.belongsTo(Place, { foreignKey: 'Placeid',as: 'place' })
 
 Place.belongsTo(Type, { foreignKey: 'Typeid', as: 'type' })
 Type.hasMany(Place, { foreignKey: 'Typeid', as: 'places' })
@@ -31,6 +31,9 @@ User.belongsToMany(Task, { through: User_Task, foreignKey: 'Taskid', as: 'tasks'
 Task.belongsToMany(User, { through: User_Task, foreignKey: 'Userid', as: 'users' })
 
 // MOVEMENT
+Movement.belongsTo(User, { foreignKey: 'Userid', as: 'user' })
+User.hasMany(Movement, { foreignKey: 'Userid', as: 'movements' })
+
 Movement.belongsTo(Reason, { foreignKey: 'Reasonid', as: 'reason' })
 Reason.hasMany(Movement, { foreignKey: 'Reasonid', as: 'movements' })
 
