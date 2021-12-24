@@ -2,7 +2,10 @@
 /node_modules
 
 /.adminjs
+
 /assets/vpp
+/assets/trips
+
 /seeders
 #files
 .env
