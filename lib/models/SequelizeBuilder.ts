@@ -48,7 +48,12 @@ export class SequelizeBuilder extends TableBuilder {
 			"import sequelize from '../utils/sequelize'\r\n" +
 			"import { Model, DataTypes } from 'sequelize'\r\n\n" +
 			`export interface I${name} {\r` +
-			`${columns.map(({ name, type }) => `\t${name}: ${getDataType(type)}`).join("\r")}\r}\r\n\n` +
+			`${columns
+				.map(({ name, type, nullable }) => {
+					;(name === "id" || nullable) && (name = `${name}?`)
+					return `\t${name}: ${getDataType(type)}`
+				})
+				.join("\r")}\r}\r\n\n` +
 			`export class ${name} extends Model<I${name}> { }\r\n\n` +
 			`${name}.init({\r` +
 			`${columns
@@ -56,7 +61,7 @@ export class SequelizeBuilder extends TableBuilder {
 					let rawColumnOptions = ""
 					let jsonColumn = getSequelizeColumn(column)
 
-					for (const key in jsonColumn) {
+					for (let key in jsonColumn) {
 						let value = jsonColumn[key]
 						if (!jsonColumn[key]) continue
 						value = typeof jsonColumn[key] == "string" && key !== "type" && key !== "references" ? `'${value}'` : value
