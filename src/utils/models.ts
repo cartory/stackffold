@@ -33,6 +33,9 @@ Task.belongsTo(Place, { foreignKey: 'Placeid', as: 'place' })
 Place.belongsToMany(User, { through: User_Place, foreignKey: 'Userid', as: 'users' })
 User.belongsToMany(Place, { through: User_Place, foreignKey: 'Placeid', as: 'places' })
 
+Place.hasMany(Career, { foreignKey: 'Placeid', as: 'careers' })
+Career.belongsTo(Place, { foreignKey: 'Placeid', as: 'place' })
+
 // USER
 User.belongsToMany(Task, { through: User_Task, foreignKey: 'Taskid', as: 'tasks' })
 Task.belongsToMany(User, { through: User_Task, foreignKey: 'Userid', as: 'users' })
