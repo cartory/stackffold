@@ -31,6 +31,7 @@ JobTitle.init({
 	supJopTitleId: {
 		key: 'supJopTitleId',
 		type: DataTypes.INTEGER({ length: 11 }),
+		allowNull: true,
 		references: { key: 'id', model: 'JobTitle' },
 	},
 }, {

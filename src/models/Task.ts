@@ -1,7 +1,7 @@
 import sequelize from '../utils/sequelize'
 import { Model, DataTypes } from 'sequelize'
 
-export interface ITask {	id: number	name: string	description: string	deadLine: string	status: boolean	Placeid: number	photoUrl: string}
+export interface ITask {	id?: number	name: string	description?: string	deadLine: string	status: boolean	Placeid?: number	photoUrl?: string}
 
 export class Task extends Model<ITask> { }
 
