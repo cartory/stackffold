@@ -6,6 +6,7 @@ import { IEquipment } from "../models/Equipment"
 
 import { Equipment, Movement, Place } from "../utils/models"
 import movementService from "../services/movement.service"
+
 @Controller("/equipments")
 export class EquipmentController {
 	@Get("/")

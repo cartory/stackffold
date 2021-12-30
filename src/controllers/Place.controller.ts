@@ -2,7 +2,7 @@ import { Response } from "express"
 import { Response as Res, Get, Post, Delete, Body, Params, Controller, Query } from "@decorators/express"
 
 import { IPlace } from "../models/Place"
-import { Place, Task, Type } from "../utils/models"
+import { Place, Task, PlaceType } from "../utils/models"
 
 @Controller("/places")
 export class PlaceController {
@@ -10,7 +10,7 @@ export class PlaceController {
 	async findAll(@Query() query, @Res() res: Response<Place[]>): Promise<Response<Place[]>> {
 		const { page = 0, limit = 10 } = query
 		try {
-			const type = await Type.findOne()
+			const type = await PlaceType.findOne()
 			
 			const places = await Place.findAll({
 				offset: page * limit,
@@ -19,14 +19,14 @@ export class PlaceController {
 					Typeid: type && type.getDataValue('id')
 				},
 				include: [
-					{ model: Type, as: "type" },
+					{ model: PlaceType, as: "type" },
 					{ model: Task, as: "tasks" },
 					{
 						model: Place,
 						association: "places",
 						through: { attributes: [] },
 						include: [
-							{ model: Type, as: "type" },
+							{ model: PlaceType, as: "type" },
 							{ model: Task, as: "tasks" },
 						],
 					},
@@ -46,14 +46,14 @@ export class PlaceController {
 			const place = await Place.findOne({
 				where: { id },
 				include: [
-					{ model: Type, as: "type" },
+					{ model: PlaceType, as: "type" },
 					{ model: Task, as: "tasks" },
 					{
 						model: Place,
 						association: "places",
 						through: { attributes: [] },
 						include: [
-							{ model: Type, as: "type" },
+							{ model: PlaceType, as: "type" },
 							{ model: Task, as: "tasks" },
 						],
 					},
