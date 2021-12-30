@@ -52,6 +52,7 @@ Movement.init({
 		key: 'Userid',
 		type: DataTypes.INTEGER({ length: 10 }),
 		references: { key: 'id', model: 'User' },
+		allowNull: true,
 	},
 }, {
 	sequelize, 
