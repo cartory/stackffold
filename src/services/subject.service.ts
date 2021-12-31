@@ -15,7 +15,7 @@ export const querySubjects = async (query: querySubjectOptions) => {
         JOIN Career c ON sc.Careerid = c.id
     WHERE
         s.deletedAt is null
-        and ${query.semester != null ? `sc.semester = ${query.semester}`: "true"} 
+        and ${query.semester != null ? `sc.semester = ${query.semester}` : "true"} 
         and ${query.careerId != null ? `c.id = ${query.careerId}` : "true"}
     LIMIT ${query.limit}
     OFFSET ${query.offset * query.limit}`
@@ -25,7 +25,7 @@ export const querySubjects = async (query: querySubjectOptions) => {
 			type: QueryTypes.SELECT,
 		})
 
-		return subjects.map(subject => {
+		return subjects.map((subject) => {
 			delete subject["deletedAt"]
 			delete subject["createdAt"]
 			delete subject["updatedAt"]
