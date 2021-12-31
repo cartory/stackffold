@@ -1,0 +1,84 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Subject_Career = exports.EquipmentBrand = exports.MovementReason = exports.EquipmentType = exports.EquipmentUnit = exports.Requirement = exports.Place_Place = exports.User_Place = exports.Equipment = exports.PlaceType = exports.User_Task = exports.JobTitle = exports.Movement = exports.Subject = exports.Career = exports.Place = exports.Task = exports.User = void 0;
+const User_1 = require("../models/User");
+Object.defineProperty(exports, "User", { enumerable: true, get: function () { return User_1.User; } });
+const Task_1 = require("../models/Task");
+Object.defineProperty(exports, "Task", { enumerable: true, get: function () { return Task_1.Task; } });
+const Place_1 = require("../models/Place");
+Object.defineProperty(exports, "Place", { enumerable: true, get: function () { return Place_1.Place; } });
+const Career_1 = require("../models/Career");
+Object.defineProperty(exports, "Career", { enumerable: true, get: function () { return Career_1.Career; } });
+const Subject_1 = require("../models/Subject");
+Object.defineProperty(exports, "Subject", { enumerable: true, get: function () { return Subject_1.Subject; } });
+const Movement_1 = require("../models/Movement");
+Object.defineProperty(exports, "Movement", { enumerable: true, get: function () { return Movement_1.Movement; } });
+const JobTitle_1 = require("../models/JobTitle");
+Object.defineProperty(exports, "JobTitle", { enumerable: true, get: function () { return JobTitle_1.JobTitle; } });
+const User_Task_1 = require("../models/User_Task");
+Object.defineProperty(exports, "User_Task", { enumerable: true, get: function () { return User_Task_1.User_Task; } });
+const PlaceType_1 = require("../models/PlaceType");
+Object.defineProperty(exports, "PlaceType", { enumerable: true, get: function () { return PlaceType_1.PlaceType; } });
+const Equipment_1 = require("../models/Equipment");
+Object.defineProperty(exports, "Equipment", { enumerable: true, get: function () { return Equipment_1.Equipment; } });
+const User_Place_1 = require("../models/User_Place");
+Object.defineProperty(exports, "User_Place", { enumerable: true, get: function () { return User_Place_1.User_Place; } });
+const Place_Place_1 = require("../models/Place_Place");
+Object.defineProperty(exports, "Place_Place", { enumerable: true, get: function () { return Place_Place_1.Place_Place; } });
+const Requirement_1 = require("../models/Requirement");
+Object.defineProperty(exports, "Requirement", { enumerable: true, get: function () { return Requirement_1.Requirement; } });
+const EquipmentUnit_1 = require("../models/EquipmentUnit");
+Object.defineProperty(exports, "EquipmentUnit", { enumerable: true, get: function () { return EquipmentUnit_1.EquipmentUnit; } });
+const EquipmentType_1 = require("../models/EquipmentType");
+Object.defineProperty(exports, "EquipmentType", { enumerable: true, get: function () { return EquipmentType_1.EquipmentType; } });
+const MovementReason_1 = require("../models/MovementReason");
+Object.defineProperty(exports, "MovementReason", { enumerable: true, get: function () { return MovementReason_1.MovementReason; } });
+const EquipmentBrand_1 = require("../models/EquipmentBrand");
+Object.defineProperty(exports, "EquipmentBrand", { enumerable: true, get: function () { return EquipmentBrand_1.EquipmentBrand; } });
+const Subject_Career_1 = require("../models/Subject_Career");
+Object.defineProperty(exports, "Subject_Career", { enumerable: true, get: function () { return Subject_Career_1.Subject_Career; } });
+// PLACE
+Place_1.Place.belongsToMany(Place_1.Place, { through: Place_Place_1.Place_Place, foreignKey: 'placeChild_id', as: 'supPlaces' });
+Place_1.Place.belongsToMany(Place_1.Place, { through: Place_Place_1.Place_Place, foreignKey: 'placeParent_id', as: 'places' });
+Place_1.Place.hasMany(Equipment_1.Equipment, { foreignKey: 'Placeid', as: 'equipments' });
+Equipment_1.Equipment.belongsTo(Place_1.Place, { foreignKey: 'Placeid', as: 'place' });
+Place_1.Place.belongsTo(PlaceType_1.PlaceType, { foreignKey: 'Typeid', as: 'type' });
+PlaceType_1.PlaceType.hasMany(Place_1.Place, { foreignKey: 'Typeid', as: 'places' });
+Place_1.Place.hasMany(Task_1.Task, { foreignKey: 'Placeid', as: 'tasks' });
+Task_1.Task.belongsTo(Place_1.Place, { foreignKey: 'Placeid', as: 'place' });
+Place_1.Place.belongsToMany(User_1.User, { through: User_Place_1.User_Place, foreignKey: 'Userid', as: 'users' });
+User_1.User.belongsToMany(Place_1.Place, { through: User_Place_1.User_Place, foreignKey: 'Placeid', as: 'places' });
+Place_1.Place.hasMany(Career_1.Career, { foreignKey: 'Placeid', as: 'careers' });
+Career_1.Career.belongsTo(Place_1.Place, { foreignKey: 'Placeid', as: 'place' });
+// USER
+User_1.User.belongsToMany(Task_1.Task, { through: User_Task_1.User_Task, foreignKey: 'Taskid', as: 'tasks' });
+Task_1.Task.belongsToMany(User_1.User, { through: User_Task_1.User_Task, foreignKey: 'Userid', as: 'users' });
+// MOVEMENT
+Movement_1.Movement.belongsTo(User_1.User, { foreignKey: 'Userid', as: 'user' });
+User_1.User.hasMany(Movement_1.Movement, { foreignKey: 'Userid', as: 'movements' });
+Movement_1.Movement.belongsTo(MovementReason_1.MovementReason, { foreignKey: 'Reasonid', as: 'reason' });
+MovementReason_1.MovementReason.hasMany(Movement_1.Movement, { foreignKey: 'Reasonid', as: 'movements' });
+Movement_1.Movement.belongsTo(Equipment_1.Equipment, { foreignKey: 'Equipmentid', as: 'equipment' });
+Equipment_1.Equipment.hasMany(Movement_1.Movement, { foreignKey: 'Equipmentid', as: 'movements' });
+Movement_1.Movement.belongsTo(Place_1.Place, { foreignKey: 'placeFrom_id', as: 'placeFrom' });
+Place_1.Place.hasMany(Movement_1.Movement, { foreignKey: 'placeFrom_id', as: 'movementsFrom' });
+Movement_1.Movement.belongsTo(Place_1.Place, { foreignKey: 'placeTo_id', as: 'placeTo' });
+Place_1.Place.hasMany(Movement_1.Movement, { foreignKey: 'placeTo_id', as: 'movementsTo' });
+// EQUIPMENT
+Equipment_1.Equipment.belongsTo(EquipmentUnit_1.EquipmentUnit, { foreignKey: 'Unitid', as: 'unit' });
+EquipmentUnit_1.EquipmentUnit.hasMany(Equipment_1.Equipment, { foreignKey: 'Unitid', as: 'equipments' });
+Equipment_1.Equipment.belongsTo(EquipmentType_1.EquipmentType, { foreignKey: 'Unitid', as: 'type' });
+EquipmentType_1.EquipmentType.hasMany(Equipment_1.Equipment, { foreignKey: 'Unitid', as: 'equipments' });
+Equipment_1.Equipment.belongsTo(EquipmentBrand_1.EquipmentBrand, { foreignKey: 'Unitid', as: 'brand' });
+EquipmentBrand_1.EquipmentBrand.hasMany(Equipment_1.Equipment, { foreignKey: 'Unitid', as: 'equipments' });
+// Subjects
+Subject_1.Subject.belongsToMany(Career_1.Career, { through: Subject_Career_1.Subject_Career, foreignKey: 'Careerid', as: 'careers' });
+Career_1.Career.belongsToMany(Subject_1.Subject, { through: Subject_Career_1.Subject_Career, foreignKey: 'Subjectid', as: 'subjects' });
+Subject_1.Subject.belongsToMany(Subject_1.Subject, { through: Requirement_1.Requirement, foreignKey: 'subjectReqId', as: 'preqs' });
+Subject_1.Subject.belongsToMany(Subject_1.Subject, { through: Requirement_1.Requirement, foreignKey: 'subjectPreqId', as: 'reqs' });
+// Requirement
+Requirement_1.Requirement.belongsTo(Career_1.Career, { foreignKey: 'Careerid', as: 'career' });
+Career_1.Career.hasMany(Requirement_1.Requirement, { foreignKey: 'Careerid', as: 'careerSubjects' });
+// JOBTITLES
+JobTitle_1.JobTitle.hasMany(JobTitle_1.JobTitle, { foreignKey: 'supJopTitleId', as: 'subJobs' });
+JobTitle_1.JobTitle.belongsTo(JobTitle_1.JobTitle, { foreignKey: 'supJopTitleId', as: 'supJob' });

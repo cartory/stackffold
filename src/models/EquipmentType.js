@@ -1,0 +1,30 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EquipmentType = void 0;
+const sequelize_1 = __importDefault(require("../utils/sequelize"));
+const sequelize_2 = require("sequelize");
+class EquipmentType extends sequelize_2.Model {
+}
+exports.EquipmentType = EquipmentType;
+EquipmentType.init({
+    id: {
+        key: 'id',
+        type: sequelize_2.DataTypes.INTEGER({ length: 11 }),
+        primaryKey: true,
+        autoIncrement: true,
+        autoIncrementIdentity: true,
+    },
+    name: {
+        key: 'name',
+        type: sequelize_2.DataTypes.STRING(50),
+        unique: true,
+    },
+}, {
+    sequelize: sequelize_1.default,
+    tableName: 'EquipmentType',
+    deletedAt: true,
+    timestamps: true,
+});
