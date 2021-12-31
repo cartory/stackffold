@@ -6,7 +6,15 @@
 	"directories": {
 		"lib": "lib"
 	},
+	"engines": {
+		"npm": "8.1.4",
+		"node": "v16.13.0"
+	},
 	"scripts": {
+		"seed": "ts-node seeders/index",
+		"build": "rm -rf dist && tsc --build",
+		"move": "cp .env dist/.env && node lib/scripts/heroku",
+		"deploy": "npm run build && npm run move && gh-pages -d dist",
 		"test": "ts-node lib/scripts/parser.ts",
 		"dev": "nodemon src/index",
 		"start": "ts-node src/index",
@@ -39,6 +47,7 @@
 		"@decorators/express": "^2.6.0",
 		"adminjs": "^5.3.3",
 		"cors": "^2.8.5",
+		"dotenv": "^10.0.0",
 		"mysql2": "^2.3.0",
 		"node-latex": "^3.1.0",
 		"nodemailer": "^6.7.2",
@@ -54,6 +63,7 @@
 		"@types/nodemailer": "^6.4.4",
 		"csv-parser": "^3.0.0",
 		"fast-xml-parser": "^3.20.3",
+		"gh-pages": "^3.2.3",
 		"json2csv": "^5.0.6",
 		"morgan": "^1.10.0",
 		"nodemon": "^2.0.12"
