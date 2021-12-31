@@ -78,8 +78,8 @@ Requirement.belongsTo(Career, { foreignKey: 'Careerid', as: 'career' })
 Career.hasMany(Requirement, { foreignKey: 'Careerid', as: 'careerSubjects' })
 
 // JOBTITLES
-JobTitle.hasMany(JobTitle, { foreignKey: 'supJobTitleId', as: 'subJobs'})
-JobTitle.belongsTo(JobTitle, { foreignKey: 'supJobTitleId', as: 'supJob'})
+JobTitle.hasMany(JobTitle, { foreignKey: 'supJopTitleId', as: 'subJobs'})
+JobTitle.belongsTo(JobTitle, { foreignKey: 'supJopTitleId', as: 'supJob'})
 
 export { 
 	User,
