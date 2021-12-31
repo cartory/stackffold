@@ -70,8 +70,8 @@ EquipmentBrand.hasMany(Equipment, { foreignKey: 'Unitid', as: 'equipments' })
 Subject.belongsToMany(Career, { through: Subject_Career, foreignKey: 'Careerid', as: 'careers' })
 Career.belongsToMany(Subject, { through: Subject_Career, foreignKey: 'Subjectid', as: 'subjects' })
 
-Subject.belongsToMany(Subject, { through: Requirement, foreignKey: 'subjectReqId', as: 'reqs' })
-Subject.belongsToMany(Subject, { through: Requirement, foreignKey: 'subjectPreqId', as: 'preqs' })
+Subject.belongsToMany(Subject, { through: Requirement, foreignKey: 'subjectReqId', as: 'preqs' })
+Subject.belongsToMany(Subject, { through: Requirement, foreignKey: 'subjectPreqId', as: 'reqs' })
 
 // Requirement
 Requirement.belongsTo(Career, { foreignKey: 'Careerid', as: 'career' })
