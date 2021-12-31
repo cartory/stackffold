@@ -43,7 +43,7 @@ JobTitle.init(
 		timestamps: true,
 		defaultScope: {
 			attributes: {
-				exclude: ["supJobTitleId"],
+				exclude: ["supJopTitleId"],
 			},
 		},
 	}
