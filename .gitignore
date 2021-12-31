@@ -6,10 +6,9 @@
 /assets/vpp
 /assets/trips
 
-/seeders
+/dist
 #files
 .env
-cris.json
 
 # assets files
 assets/vpp.json
